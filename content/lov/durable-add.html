@@ -1,0 +1,113 @@
+<ol class="breadcrumb">
+    <li><a href=""><i class="fa fa-cogs"></i> เมนู</a></li>
+    <li class="active"> เพิ่มครุภัณฑ์</li>
+</ol>
+
+
+<div class="content">
+	<div class="box box-solid box-blue">
+		<div class="box-header">
+
+			<div class="box-tools pull-left">
+				<button data-box-collapse class="btn btn-default btn-sm">
+					<i class="fa fa-chevron-up"></i>
+				</button>
+			</div>
+      <h3 class="box-title" >รายละเอียดของครุภัณฑ์</h3>
+			<div class="box-tools pull-right">
+        <button class="btn btn-xs btn-success"  data-ng-click="save()" data-ng-hide="getDurableById != null || getDurableById != undefined" >
+          <i class="fa fa-save"></i><span> บันทึก</span>
+				</button>
+        <button class="btn btn-xs btn-success"  data-ng-click="saveDurableDetail()" data-ng-show="getDurableById != null || getDurableById != undefined">
+          <i class="fa fa-save"></i><span> บันทึกคุณบัติครุภัณฑ์</span>
+        </button>
+
+
+				<button class="btn btn-xs btn-warning" data-ng-click="back()">
+					<i class="fa fa-arrow-left"></i><span>กลับ</span>
+				</button>
+
+			</div>
+		</div><!-- /.box-header -->
+		<div class="box-body">
+			<form name="form" data-unsaved-warning="true" novalidate>
+
+
+
+
+        <h3 >เพิ่มครูภัณฑ์</h3>
+				<div class="nav-tabs-custom">
+
+					<!-- #################################### Appointment Details Tab ################################# -->
+					<div class="tab-content">
+            <a id="add_row" class="btn btn-xs btn-primary pull-left" data-ng-show="getDurableById != null || getDurableById != undefined"> <i class="fa fa-plus-square"></i>  เพิ่มคุณสมบัติ</a><a id='delete_row' class="pull-right  btn btn-xs btn-danger" data-ng-show="dur_id != null || dur_id != undefined"><i class="fa fa-minus-circle"></i> ลบคุณสมบัติ</a>
+            <br>
+            <div class="box-body">
+                <div class="row form-group">
+                    <div class="dataTables_wrapper">
+                        <table data-serverside-paging data-paging="paging" data-search="search" id="tab_logic" class="table table-bordered table-condensed table-striped table-hover dataTable">
+                            <thead>
+                              <tr>
+                                <th colspan="2" style="text-align: left;width:60%"><input type="text" class="form-control input-xs" placeholder="รายการ" data-ng-model="dur_list" style="color:{{dur_newCo}}" data-ng-disabled="readonlyInput" required ></th>
+                                <th colspan="5" style="text-align: left;"><input type="text" class="form-control input-xs" placeholder="ราคา" data-ng-model="dur_price" style="color:{{dur_newCo}}" data-ng-disabled="readonlyInput" required ></th>
+                              </tr>
+                              <tr>
+                                  <th colspan="2" style="text-align: left;width:60%"><input type="text" class="form-control input-xs" placeholder="แบบ/ยี่ห้อ" data-ng-model="dur_naoe" style="color:{{dur_newCo}}" data-ng-disabled="readonlyInput" required ></th>
+                                  <th colspan="5" style="text-align: left;"><input type="text" class="form-control input-xs" placeholder="หมายเลขพัสดุ : 74440-010-0002-123" data-ng-model="dur_numoe" style="color:{{dur_newCo}}" data-ng-disabled="readonlyInput" required ></th>
+                              </tr>
+                              <tr>
+                                  <th colspan="2" style="text-align: left;width:60%"><input type="text" class="form-control input-xs" placeholder="เงิน" data-ng-model="dur_tom" style="color:{{dur_newCo}}" data-ng-disabled="readonlyInput" required ></th>
+                                  <th colspan="5" style="text-align: left;" ><input type="text" class="form-control input-xs" placeholder="ปี" data-ng-model="dur_year" style="color:{{dur_newCo}}" data-ng-disabled="readonlyInput" required></th>
+                              </tr>
+                              <tr>
+                                  <th colspan="2" style="text-align: left;width:60%">
+                                    <select class="form-control input-xs" data-ui-select2  data-ng-model="dur_company"  >
+                                      <option value=""></option>
+                                      <option	data-ng-repeat="dep in getCompanyList" value="{{dep.com_name}}">{{dep.com_name}}</option>
+                                    </select>                                  </th>
+                                  <th colspan="5" style="text-align: left;" data-ng-show="getDurableById != null|| getDurableById != undefined"><label style="color:{{dur_newCo}}">วันเดือนปี : {{getDurableById.dur_dop.date}}</label></th>
+                                  <th colspan="5" style="text-align: left;" data-ng-hide="getDurableById != null|| getDurableById != undefined">
+                                    <div class='input-group date col-sm-12' data-datepicker
+                      							data-ng-model="criteria.date_f" id="coverDate">
+                      							<input type='text' class="form-control input-xs">
+                      							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      						</div>
+                                </th>
+
+
+                              </tr>
+                              <tr>
+                                  <th colspan="2" style="text-align: left;width:60%">
+                                    <select class="form-control input-xs required" data-ui-select2
+                                      data-ng-model="dur_department" data-ng-disabled="readonlyInput">
+                                      <option value="">หน่วยงาน</option>
+                                      <option	data-ng-repeat="dep in getDepartmentList" value="{{dep.Cost_SKTHM}}" >{{dep.Cost_name}}</option>
+                                    </select>
+                                  </th>
+                                  <th colspan="5" style="text-align: left;"><input type="text" class="form-control input-xs" placeholder="วิธีการได้มา" data-ng-model="dur_acquired" style="color:{{dur_newCo}}" data-ng-disabled="readonlyInput" required></th>
+                              </tr>
+                                <tr data-ng-show="getDurableById != null|| getDurableById != undefined">
+                                    <th colspan="3" class="text-center">รายการคุณสมบัติ</th>
+                                </tr>
+                            </thead>
+                            <tbody data-ng-show="getDurableById != null || getDurableById != undefined">
+                                      <tr data-ng-repeat="gdbn in getDurableDetailList">
+                                        <td colspan="3" class="text-left"><a href="" data-ng-click="editDurableDetail(gdbn.de_id)">{{$index+1}}.{{gdbn.de_desc}}</td>
+                                      </tr>
+                                      <tr id='addr0'>
+                                          <td colspan="3"><input type="text" name='deli_his0' data-ng-model="criteria.deli_his0" class="form-control input-xs"/></td>
+                                      <tr id='addr1'></tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div><!-- box body -->
+
+						<!-- #################################### Car Check Details Tab ################################# -->
+					</div>
+				</div>
+			</form>
+		</div><!-- /.box-body -->
+	</div><!-- /.box -->
+</div>

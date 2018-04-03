@@ -1,0 +1,568 @@
+<ol class="breadcrumb">
+	<li><a href="#/home-dashboard"><i class="fa fa-home"></i> Home</a></li>
+	<li><a href="#/all-review">Risk Survey</a></li>
+	<li><a href="#/underwriter-todo-list">Underwriter To Do List</a></li>
+	<li data-ng-show="mode == 'create'" class="active">Create</li>
+	<li data-ng-show="mode == 'edit'" class="active">Edit</li>
+</ol>
+
+<div class="content">
+	<div class="box box-solid box-blue">
+		<div class="box-header">
+			<div class="box-tools pull-left">
+				<button data-box-collapse class="btn btn-default btn-sm">
+					<i class="fa fa-chevron-up"></i>
+				</button>
+			</div>
+			<h3 class="box-title" data-ng-show="mode == 'create'">Create</h3>
+			<h3 class="box-title" data-ng-show="mode == 'edit'">Edit</h3>
+			<div class="box-tools pull-right">
+				<button class="btn btn-xs btn-success" data-ng-click="save()">
+					<i class="fa fa-save"></i><span>Save</span>
+				</button>
+				<button class="btn btn-xs btn-warning" data-ng-click="back()">
+					<i class="fa fa-arrow-left"></i><span>Back</span>
+				</button>
+			</div>
+		</div><!-- /.box-header -->
+		
+		<form name="form" data-unsaved-warning="true" novalidate>
+			<div class="box-body">
+				<div class="nav-tabs-custom">
+					<ul class="nav nav-tabs">
+						<li id="uwToDo" class="active"><a href="" data-target="#appointmentTab" data-toggle="tab" data-translate>Appointment Details</a></li>
+						<li id="carCheck"><a href="" data-target="#carCheckTab" data-toggle="tab" data-translate>Car Check Details</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="appointmentTab">
+							<!-- ######################################### line 1 ###################################### -->
+							<div class="row form-group">
+								<div class="col-sm-4" data-ng-show="mode == 'edit'">
+									<label class="col-sm-5 text-inline">Application No </label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.appNo" readonly> 
+										<span class="help-block-error" data-ng-show="isSubmit && form.appNo.$error.required" >Required!</span>
+									</div>
+								</div>
+								<div class="col-sm-4" data-ng-show="mode == 'edit'">
+									<label class="col-sm-5 text-inline">Assured </label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.assured" readonly>
+									</div>
+								</div>
+								
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Effective Date </label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.coverDate" readonly>
+									</div>
+								</div>
+							</div><!-- row 1 -->
+							
+							<div class="row form-group">
+								<div class="col-sm-4" data-ng-show="mode == 'edit'">
+									<label class="col-sm-5 text-inline">Car No </label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.carNo" readonly>
+										<span class="help-block-error" data-ng-show="isSubmit && form.carNo.$error.required">Required!</span>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline"> Chassis No  </label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.chassisNo" readonly>
+									</div>
+								</div>
+								<div class="col-sm-4" data-ng-show="mode == 'edit'">
+									<label class="col-sm-5 text-inline">Engine No </label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.chassisNo" readonly>
+									</div>
+								</div>
+							</div><!-- row 1 -->
+							<div class="row form-group">
+								<div class="col-sm-4" data-ng-show="mode == 'edit'">
+									<label class="col-sm-5 text-inline">Brand </label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.brand" readonly> 
+										<span class="help-block-error" data-ng-show="isSubmit && form.brand.$error.required">Required!</span>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Model </label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.model" readonly>
+									</div>
+								</div>
+								<div class="col-sm-4" data-ng-show="mode == 'edit'">
+									<label class="col-sm-5 text-inline">Color </label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.color" readonly>
+									</div>
+								</div>
+							</div><!-- row 2 -->
+	
+							<div class="box box-solid box-blue">
+								<div class="box-header">
+									<div class="box-tools pull-left">
+										<button data-box-collapse class="btn btn-default btn-sm">
+											<i class="fa fa-chevron-up"></i>
+										</button>
+									</div>
+									<h4 class="box-title">Surveyor Information</h4>
+								</div>
+								<div class="box-body">
+									
+									<div class="col-sm-12" style="text-align:right">
+										<label class="text-inline">Show All </label>
+										<input type="checkbox"><span>
+									</div>
+									<button class="btn btn-xs btn-success" data-ng-click="">
+										<i class="fa fa-check-o" style="margin-right: 5px;"></i><span>Assign</span>
+									</button>
+									<div class="dataTables_wrapper">
+										<table data-serverside-paging data-paging="paging"
+											data-search="search"
+											class="table table-bordered table-condensed table-striped table-hover dataTable">
+											<thead>
+												<tr>
+													<th data-model="surveyorCode" data-translate>No</th>
+													<th data-model="surveyorType" data-translate>Surveyor Type By</th>
+													<th data-model="branch" data-translate>Branch/Province</th>
+													<th data-model="status" data-translate>Surveyor Name</th>
+													<th data-model="remark" data-translate>Contact No.</th>
+													<th data-model="assign" data-translate>Assign Date</th>
+													<th data-model="assign" data-translate>Surveyor Action Date</th>
+													<th data-model="surveyorAction" data-translate>Status</th>
+													<th data-model="action" data-translate>Action</th>
+												</tr>
+											</thead>
+											<tbody id="datatable_tbody">
+												<tr data-ng-repeat="uwToDo in surveyorList | filter:'Accepted'">
+													<td class="text-left">{{uwToDo.surveyorCode}}</td>
+													<td class="text-left">{{uwToDo.surveyorType}}</td>
+													<td class="text-left">{{uwToDo.branch}}/{{uwToDo.province}}</td>
+													<td class="text-left">{{uwToDo.surveyorName}}</td>
+													<td class="text-left">{{uwToDo.contactNo}}</td>
+													<td class="text-center">{{uwToDo.assignDate}}</td>
+													<td class="text-center">{{uwToDo.surveyorAD}}</td>
+													<td class="text-left">{{uwToDo.status}}</td>
+													<td class="action">
+														<a href="" data-tooltip="View" data-ng-click=""><i class="fa fa-eye"></i></a>
+														<a href="" data-tooltip="Cencel Assign" data-toggle="modal" data-target="#comfirmRefresh" data-ng-click="gotoConfirmRefresh()">
+															<i class="fa fa-refresh"></i>
+														</a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="row">
+											<div class="col-sm-4">
+												
+											</div>
+											<div class="col-sm-4">
+												
+											</div>
+											<div class="col-sm-4">
+												
+											</div>
+										</div><!-- end table footer -->
+									</div>
+								</div><!-- end box body -->
+							</div>
+	
+							<div class="box box-solid box-blue">
+								<div class="box-header">
+									<div class="box-tools pull-left">
+										<button data-box-collapse class="btn btn-default btn-sm">
+											<i class="fa fa-chevron-up"></i>
+										</button>
+									</div>
+									<h4 class="box-title">Appointment Information</h4>
+								</div>
+								<br/>
+								<div class="tab-content">
+									<div class="tab-pane active">
+										<div class="row form-group">
+											<div class="col-sm-4">
+												<label class="col-sm-5 text-inline">Insured Name </label>
+												<div class="col-sm-7">
+													<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.contactName" readonly> 
+													<span class="help-block-error" data-ng-show="isSubmit && form.contactName.$error.required">Required!</span>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<label class="col-sm-5 text-inline">Telephone No </label>
+												<div class="col-sm-7">
+													<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.telNo" readonly>
+												</div>
+											</div>
+											<div class="col-sm-4" data-ng-show="mode == 'edit'">
+												<label class="col-sm-5 text-inline">Mobile No</label>
+												<div class="col-sm-7">
+													<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.mobileNo" readonly>
+												</div>
+											</div>
+										</div>
+										<div class="row form-group">
+											<div class="col-sm-4">
+												<label class="col-sm-5 text-inline">Address </label>											
+												<div class="col-sm-2">
+													<textarea class="form-comtrol textarea-xs" cols="104" rows="3" data-ng-model="uwToDoList.address" readonly></textarea>
+													<span class="help-block-error" data-ng-show="isSubmit && form.fileDetail.$error.required">Required!</span>
+												</div>
+											</div>
+											<div class="col-sm-4"></div>
+											<div class="col-sm-4">
+												<label class="col-sm-5 text-inline">Province </label>
+												<div class="col-sm-7">
+													<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.province" readonly> 
+													<span class="help-block-error" data-ng-show="isSubmit && form.contactName.$error.required">Required!</span>
+												</div>
+											</div>
+										</div>
+										<div class="box-body">
+											<button class="btn btn-xs btn-success" data-tooltip="show addCall" data-toggle="modal" data-target="#addCall" data-ng-click="gotoAddCall()">
+												<i class="fa fa-plus"	style="margin-right: 5px;"></i><span>Add</span>
+											</button>
+			
+											<div class="dataTables_wrapper">
+												<table data-serverside-paging data-paging="paging" data-search="search" class="table table-bordered table-condensed table-striped table-hover dataTable">
+													<thead>
+														<tr>
+															<th data-model="times" data-translate>No.</th>
+															<th data-model="appointmentBy" data-translate>Created By</th>
+															<th data-model="apPointmentDate" data-translate>Appointment Date</th>
+															<th data-model="province" data-translate>Province/District</th>
+															<th data-model="place" data-translate>Place</th>
+															<th data-model="status" data-translate>Status</th>
+															<th data-model="remark" data-translate>Remark</th>
+															<th data-model="action" data-translate>Action</th>
+														</tr>
+													</thead>
+													<tbody id="datatable_tbody">
+														<tr data-ng-repeat="uwToDo in appointmentList">
+															<td class="text-center">{{uwToDo.callTimes}}</td>
+															<td class="text-left">{{uwToDo.appointmentBy}}</td>
+															<td class="text-center">{{uwToDo.appointmentDate}}</td>
+															<td class="text-left">{{uwToDo.provinceDistrict}}</td>
+															<td class="text-left">{{uwToDo.place}}</td>
+															<td class="text-left">{{uwToDo.status}}</td>
+															<td class="text-left">{{uwToDo.remark}}</td>
+															<td class="action">
+																<a href="" data-tooltip="Edit" data-ng-click=""><i class="fa fa-edit"></i></a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+												<div class="row">
+													<div class="col-sm-4">
+														
+													</div>
+													<div class="col-sm-4">
+														
+													</div>
+													<div class="col-sm-4">
+														
+													</div>
+												</div><!-- end table footer -->
+											</div>
+										</div>
+									</div>
+								</div>	
+							</div>
+						</div><!-- end appoitment Tab -->
+						<!-- #################################### Car Check Tab ################################# -->
+						<div class="tab-pane" id="carCheckTab">
+							<div class="row form-group">
+								<div class="col-sm-4" data-ng-show="mode == 'edit'">
+									<label class="col-sm-4 text-inline">Application No </label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.appNo"> 
+										<span class="help-block-error" data-ng-show="isSubmit && form.appNo.$error.required">Required!</span>
+									</div>
+								</div>
+								<div class="col-sm-4" data-ng-show="mode == 'edit'">
+									<label class="col-sm-4 text-inline">Assured </label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.assured">
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Effective Date From  </label>
+									<div class="col-sm-7">
+										<input type="text" class="col-sm-5 input-xs" data-ng-model="uwToDoList.coverDate" />
+										<div class="col-sm-2">
+											<label class="text-inline">To </label>
+										</div>
+										<input type="text" class="col-sm-5 input-xs" data-ng-model="uwToDoList.coverDateTo" />
+									</div>
+								</div>
+							</div>
+							<!--line 2 -->
+							<div class="row form-group">
+								<div class="col-sm-4" data-ng-show="mode == 'edit'">
+									<label class="col-sm-4 text-inline">License No </label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.carNo"> 
+										<span class="help-block-error" data-ng-show="isSubmit && form.carNo.$error.required">Required!</span>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-4 text-inline"> Chassis No  </label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.chassisNo">
+									</div>
+								</div>
+								<div class="col-sm-4" data-ng-show="mode == 'edit'">
+									<label class="col-sm-5 text-inline">Engine No </label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.chassisNo">
+									</div>
+								</div>
+							</div>
+							<div class="box box-solid box-blue">
+								<div class="box-header">
+									<div class="box-tools pull-left">
+										<button data-box-collapse class="btn btn-default btn-sm">
+											<i class="fa fa-chevron-up"></i>
+										</button>
+									</div>
+									<h4 class="box-title">Car Check Details</h4>
+								</div>
+								<div class="box-body">
+									<!-- ######################################### line 3 ###################################### -->
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-4 text-inline">Checked Date </label>
+											<div class="col-sm-8">
+												<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.appointmentDate"> 
+												<span class="help-block-error" data-ng-show="isSubmit && form.appointmentDate.$error.required">Required!</span>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-4 text-inline">Status </label>
+											<div class="col-sm-8">
+												<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.statusNameLc">
+											</div>
+										</div>
+										<div class="col-sm-4" data-ng-show="mode == 'edit'">
+											<label class="col-sm-5 text-inline">Appointment Date </label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" type="text" data-ng-model="uwToDoList.appointmentDate">
+											</div>
+										</div>
+									</div>
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-4 text-inline">Checked Details </label>
+											<div class="col-sm-8">
+												<textarea class="col-sm-10 form-comtrol" maxlength="100" cols="100" rows="4" style="margin-left: 0px; margin-right: 0px; width: 537px;"></textarea>
+												<span class="help-block-error" data-ng-show="isSubmit && form.checkDetail.$error.required">Required!</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+	
+							<div class="box box-solid box-blue">
+								<div class="box-header">
+									<div class="box-tools pull-left">
+										<button data-box-collapse class="btn btn-default btn-sm">
+											<i class="fa fa-chevron-up"></i>
+										</button>
+									</div>
+									<h4 class="box-title">Attachment</h4>
+								</div>
+								<div class="box-body">
+									<!-- ######################################### line 3 ###################################### -->
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-4 text-inline">File </label>
+											<div class="col-sm-7">
+												<div class="input-group">
+													<input class="form-control input-xs" style=" width: 200px;" id="upload" readonly>
+													<span class="btn btn-default fileinput-button input-group-addon">
+														<i class="fa fa-upload"></i><span>Browse</span>
+														<input type="file" id="inputFile" data-filename-placement="inside">
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-4 text-inline">File Details </label>
+											<div class="col-sm-8">
+												<textarea class="col-sm-10 form-comtrol" maxlength="100" cols="100" rows="4" style="margin-left: 0px; margin-right: 0px; width: 537px;"></textarea>
+												<span class="help-block-error" data-ng-show="isSubmit && form.fileDetail.$error.required">Required!</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<button class="btn btn-xs btn-danger" data-ng-click="deleteSelected()">
+								<i class="fa fa-trash-o"></i><span>Delete</span>
+							</button>
+							<div class="dataTables_wrapper">
+								<table data-serverside-paging data-paging="paging" data-search="search" class="table table-bordered table-condensed table-striped table-hover dataTable">
+									<thead>
+										<tr>
+											<th width="20px"><input data-i-check-all="row_sel" type="checkbox"></th>
+											<th data-model="file" data-translate>File Name</th>
+											<th data-model="fileSize" data-translate>File Size</th>
+											<th data-model="fileDetails" data-translate>File Details</th>
+	
+										</tr>
+									</thead>
+									<tbody id="datatable_tbody">
+										<tr data-ng-repeat="uwToDo in surveyorList">
+											<td><input type="checkbox" name="row_sel" data-i-check></td>
+											<td class="text-left">1001.jpg</td>
+											<td class="text-right">500 kb</td>
+											<td class="text-left">ด้านหน้ารถ</td>
+	
+										</tr>
+										<tr>
+											<td><input type="checkbox" name="row_sel" data-i-check></td>
+											<td class="text-left">2002.jpg</td>
+											<td class="text-right">700 kb</td>
+											<td class="text-left">ด้านข้างรถ</td>
+	
+										</tr>
+									</tbody>
+								</table>
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="dataTables_length">
+											<label>Show <select class="form-control input-xs" data-ng-model="paging.limit">
+													<option value="10" selected="selected">10</option>
+													<option value="25">25</option>
+													<option value="50">50</option>
+													<option value="100">100</option>
+											</select> records per page
+											</label>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="dataTables_info">Showing
+											{{paging.showing.start}} to {{paging.showing.end}} of
+											{{paging.showing.total}} entries</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="dataTables_paginate paging_bootstrap">
+											<div data-pagination data-total-items="paging.totalItems"
+												data-items-per-page="paging.limit"
+												data-page="paging.pageNumber" data-max-size="5"
+												data-boundary-links="true"
+												data-on-select-page="selectPage(page)"></div>
+										</div>
+									</div>
+								</div><!-- end table footer -->
+							</div>
+						</div><!-- end car check -->
+					</div>
+				</div><!-- end custom tab -->
+			</div>
+		</form>
+	</div><!-- /.box-body -->
+</div><!-- /.box -->
+	
+	<!-- ######################################## Popup Comfirm Refresh ######################################## -->
+<div class="modal fade" id="comfirmRefresh" tabindex="-1" data-role="dialog" data-aria-labelledby="myModalLabel" data-aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row form-group">
+					<label class="">Are you want to refresh ?</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary btn-xs">
+					<span lang="En">Save</span>
+				</button>
+				<button type="button" class="btn btn-warning btn-xs" data-dismiss="modal">
+					<span data-translate>Cancel</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ######################################## End Popup ######################################## -->
+
+<!-- ######################################## Popup Add Call ######################################## -->
+<div class="modal fade" id="addCall" tabindex="-1" data-role="dialog"  data-aria-labelledby="myModalAddCall" data-aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span data-aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <span lang="En" style="color: #367fa9; font-size: 24px; font-weight: bold; line-height: 30px;">Add Call History </span>&nbsp;&nbsp;
+		     </div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="row form-group">
+						<div class="col-sm-6">
+							<label class="col-sm-4 text-inline">Contact Date </label>
+							<div class="col-sm-8">
+								<div class='input-group date' data-datepicker data-ng-model="criteria.coverDate" id="coverDate">
+									<input type='text' class="form-control input-xs col-xs-6">
+									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<label class="col-sm-4 text-inline">Status </label>
+							<div class="col-sm-8">
+								<select class="form-control input-xs" data-ui-select2 data-ng-model="criteria.statusAddcall">
+									<option value=""></option>
+									<option data-ng-repeat="statusAddcall in statusAddcallList" value="{{statusAddcall.name}}">{{statusAddcall.name}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				<h4 class="page-header">
+					<span lang="En" style="color: #367fa9; font-size: 16px; font-weight: bold; line-height: 30px;">Appointment Place</span>&nbsp;&nbsp;
+				</h4>
+				<div class="row form-group">
+					<div class="col-sm-6">
+						<label class="col-sm-4 text-inline">Place </label>
+						<div class="col-sm-8">
+							<textarea class="form-comtrol textarea-xs" maxlength="100" cols="100" rows="3" style="margin-left: 0px; margin-right: 0px; width: 480px;"></textarea>
+							<span class="help-block-error" data-ng-show="isSubmit && form.fileDetail.$error.required">Required!</span>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-sm-6">
+						<label class="col-sm-4 text-inline">Province </label>
+						<div class="col-sm-8">
+							<select class="form-control input-xs" data-ui-select2 data-ng-model="criteria.statusA">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-sm-6">
+						<label class="col-sm-4 text-inline">District </label>
+						<div class="col-sm-8">
+							<select class="form-control input-xs" data-ui-select2 data-ng-model="criteria.statusA">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>	
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success btn-xs">
+					<i class="fa fa-save"></i>&nbsp;&nbsp;<span lang="En">Save</span>
+				</button>
+				<button type="button" class="btn btn-warning btn-xs" data-dismiss="modal">
+					<i class="fa fa-ban"></i>&nbsp;&nbsp;<span data-translate>Cancel</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ######################################## End Popup ######################################## -->

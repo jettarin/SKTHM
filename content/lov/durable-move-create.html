@@ -1,0 +1,174 @@
+<!-- ######################################## [START] BREADCRUMB ######################################## -->
+<ol class="breadcrumb">
+	<li><a href="#/home-dashboard"><i class="fa fa-home"></i> หน้าแรก</a></li>
+	<li><a href=""><i class="fa fa-reply"></i> ครุภัณฑ์</a></li>
+  <li><i class="fa fa-angle-double-left"></i> ย้ายครุภัณฑ์</li>
+
+</ol>
+<!-- ######################################## [ END ] BREADCRUMB ######################################## -->
+
+<!-- ######################################## [START] CONTENT ######################################## -->
+<div class="content">
+	<div class="box box-solid box-blue">
+		<div class="box-header">
+			<div class="box-tools pull-left">
+				<button data-box-collapse class="btn btn-default btn-sm">
+					<i class="fa fa-chevron-up"></i>
+				</button>
+			</div>
+			<h3 class="box-title" >รายการย้ายครุภัณฑ์</h3>
+
+			<div class="box-tools pull-right">
+				<button class="btn btn-xs btn-success" data-ng-click="save()" >
+					<i class="fa fa-save"></i><span>บันทึก</span>
+				</button>
+
+				<button class="btn btn-xs btn-warning" data-ng-click="back()">
+					<i class="fa fa-arrow-left"></i><span>กลับ</span>
+				</button>
+			</div>
+		</div><!-- /.box-header -->
+		<form name="form" data-unsaved-warning="true" novalidate>
+		<div class="box-body">
+
+			<div class="nav-tabs-custom">
+			<ul class="nav nav-tabs">
+				<li  class="active"><a href="" data-target="#fix" data-toggle="tab" data-translate data-ng-click="tab(1)">ย้ายครุภัณฑ์</a></li>
+			</ul>
+
+
+
+					<!-- #################################### User Information Tab ################################# -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="fix">
+						<div class="row form-group">
+							<div class="text-center">
+								<label class="text-center"><h2>แบบฟอร์มการย้ายครุภัณฑ์</h2></label>
+								<br>
+								<br>
+
+							</div>
+
+
+
+						</div>
+							<!-- ######################################### line 1 ###################################### -->
+							<div class="row form-group">
+								<div class="col-sm-6">
+									<label class="col-sm-2 text-inline">ผู้ย้ายครุภัณฑ์ :</label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs" name="fullName" type="text" data-ng-model="criteria.fullName" data-ng-disabled="true" required>
+										<!--<span class="help-block-error" data-ng-show="isSubmit && form.userCode.$error.required">Required!</span>-->
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<label class="col-sm-4 text-inline">หน่วยงานเดิม :</label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs " name="costName" type="text" data-ng-model="criteria.costName" data-ng-disabled="true" data-ng-show="getUserById.Permiss_SKTHM == '0'" required>
+										<select class="form-control input-xs required" data-ui-select2
+                    data-ng-model="criteria.dep_f" data-ng-click="adminSelectDepartment(criteria.dep_f)" >
+											<option value="">หน่วยงาน</option>
+											<option	data-ng-repeat="dep in getDepartmentList" value="{{dep.Cost_SKTHM}}" >{{dep.Cost_name}}</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="row form-group">
+                <div class="col-sm-6">
+                  <label  class="col-sm-2 text-inline">เลขครุภัณฑ์ :</label>
+                  <div class="col-sm-8">
+                    <select class="form-control input-xs required"   data-ui-select2 data-ng-model="criteria.durable_id" data-ng-click="descDurable(criteria.durable_id)">
+                      <option value=""></option>
+                      <option data-ng-repeat="wod in wasteOfDepartList" value="{{wod.dur_id}}" data-ng-disabled="wod.dis">{{wod.dur_numoe}}</option>
+                    </select>
+                    <span class="help-block-error" data-ng-show="error.durErr">กรุณาเลือก !</span>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="col-sm-4 text-inline">ย้ายไป :</label>
+                  <div class="col-sm-8">
+                    <input class="form-control input-xs" name="costName" type="text"  data-ng-disabled="true" data-ng-show="getUserById.Permiss_SKTHM == '0'" required>
+                    <select class="form-control input-xs required" data-ui-select2
+                      data-ng-model="criteria.dep_t"  data-ng-show="getUserById.Permiss_SKTHM != '0'">
+                      <option value="">หน่วยงาน</option>
+                      <option	data-ng-repeat="dep in getDepartmentList" value="{{dep.Cost_SKTHM}}" >{{dep.Cost_name}}</option>
+                    </select>
+                    <span class="help-block-error" data-ng-show="error.depErr">กรุณาเลือก !</span>
+                    <!--<span class="help-block-error" data-ng-show="isSubmit && form.userCode.$error.required">Required!</span>-->
+                  </div>
+                </div>
+							</div>
+							<div class="row form-group">
+                <div class="col-sm-6">
+                  <label class="col-sm-2 text-inline">ยี่ห้อ :</label>
+                  <div class="col-sm-8">
+                    <input class="form-control input-xs" name="costName" type="text" data-ng-model="durableDetail.dur_naoe" data-ng-disabled="true" >
+                    <!--<span class="help-block-error" data-ng-show="isSubmit && form.userCode.$error.required">Required!</span>-->
+                  </div>
+                </div>
+								<div class="col-sm-6">
+									<label class="col-sm-4 text-inline">บริษัท :</label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs" name="costName" type="text" data-ng-model="durableDetail.dur_company" data-ng-disabled="true" >
+										<!--<span class="help-block-error" data-ng-show="isSubmit && form.userCode.$error.required">Required!</span>-->
+									</div>
+								</div>
+							</div>
+							<div class="row form-group">
+                <div class="col-sm-6">
+									<label class="col-sm-2 text-inline">รายการ :</label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs" name="fullName" type="text" data-ng-model="durableDetail.dur_list" data-ng-disabled="true" >
+										<!--<span class="help-block-error" data-ng-show="isSubmit && form.userCode.$error.required">Required!</span>-->
+									</div>
+								</div>
+
+								<div class="col-sm-6">
+									<label class="col-sm-4 text-inline">เงิน :</label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs" name="costName" type="text" data-ng-model="durableDetail.dur_tom" data-ng-disabled="true" >
+										<!--<span class="help-block-error" data-ng-show="isSubmit && form.userCode.$error.required">Required!</span>-->
+									</div>
+								</div>
+							</div>
+							<div class="row form-group">
+                <div class="col-sm-6">
+									<label class="col-sm-2 text-inline">ราคา :</label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs" name="fullName" type="text" data-ng-model="durableDetail.dur_price" data-ng-disabled="true" >
+										<!--<span class="help-block-error" data-ng-show="isSubmit && form.userCode.$error.required">Required!</span>-->
+									</div>
+								</div>
+
+								<div class="col-sm-6">
+									<label class="col-sm-4 text-inline">อายุครุภัณฑ์ :</label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs" name="costName" type="text" data-ng-model="age_of_durable" data-ng-disabled="true" >
+										<!--<span class="help-block-error" data-ng-show="isSubmit && form.userCode.$error.required">Required!</span>-->
+									</div>
+								</div>
+							</div>
+              <div class="row form-group">
+                <div class="col-sm-6">
+									<label class="col-sm-2 text-inline">หมายเหตุ :</label>
+									<div class="col-sm-8">
+										<textarea class="form-control input-xs" name="waste"  type="text" data-ng-model="criteria.remark" ></textarea>
+										<!--<span class="help-block-error" data-ng-show="isSubmit && form.userCode.$error.required">Required!</span>-->
+									</div>
+								</div>
+                <div class="col-sm-6">
+									<label class="col-sm-4 text-inline">วันที่จัดซื้อ :</label>
+									<div class="col-sm-8">
+										<input class="form-control input-xs" name="fullName" type="text" data-ng-model="date_of_p" data-ng-disabled="true" >
+										<!--<span class="help-block-error" data-ng-show="isSubmit && form.userCode.$error.required">Required!</span>-->
+									</div>
+								</div>
+              </div>
+						<!-- #################################### Authorization Setting Tab ################################# -->
+					</div>
+					</div>
+				</div>
+			</form>
+		</div><!-- /.box-body -->
+	</div><!-- /.box -->
+</div>

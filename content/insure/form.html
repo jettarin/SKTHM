@@ -1,0 +1,352 @@
+<ol class="breadcrumb">
+    <li><a href="#/home-dashboard"><i class="fa fa-list-alt"></i> ต่อประกัน</a></li>
+    <li class="active"> งานต่อประกัน</li>
+    <li class="active">รายละเอียดงานต่อประกัน</li>
+</ol>
+
+
+<div class="content">
+	<div class="box box-solid box-blue">
+		<div class="box-header">
+
+			<div class="box-tools pull-left">
+				<button data-box-collapse class="btn btn-default btn-sm">
+					<i class="fa fa-chevron-up"></i>
+				</button>
+			</div>
+      <h3 class="box-title" >รายละเอียดของงาน</h3>
+
+			<div class="box-tools pull-right">
+        <button class="btn btn-xs btn-success"  data-ng-hide="showSave==1 || getJobById.job_status==60" data-ng-click="sendToInsure()">
+          <i class="fa fa-mail-forward"></i><span>ต่อประกัน</span>
+				</button>
+        <button class="btn btn-xs btn-primary" data-ng-show="showPrint" data-ng-click="gotoReport()" >
+					<i class="fa fa-edit"></i><span>เขียนแบบฟอร์มขออนุมัติ</span>
+				</button>
+        <button class="btn btn-xs btn-info" data-ng-hide="showAddInsure==4" data-ng-click="insureList()">
+          <i class="fa fa-bars"></i><span>เขียนรายการต่อประกัน</span>
+				</button>
+				<button class="btn btn-xs btn-warning" data-ng-click="back()">
+					<i class="fa fa-arrow-left"></i><span>กลับ</span>
+				</button>
+			</div>
+		</div><!-- /.box-header -->
+		<div class="box-body">
+
+
+			<form name="form" data-unsaved-warning="true" novalidate>
+				<div class="nav-tabs-custom">
+          <ul class="nav nav-tabs">
+						<li class="active"><a href="" data-target="#appointmentTab" data-toggle="tab" data-translate data-ng-click="tap(1)"><b>{{getJobById.dur_list}}</b></a></li><span data-ng-show="getJobById.job_status=='60'" class="pull-right" style="color:green;"><h4>ส่งเรื่องไปยังฝ่ายพัสดุแล้ว</h4></span>
+            <li ><a href="" data-target="#printPdf" data-toggle="tab" data-ng-show="getJobById.job_status==60" data-ng-click="tap(2)"  data-translate><b>เขียนแบบฟอร์มขออนุมัติ</b></a></li>
+
+          </ul>
+					<!-- #################################### Appointment Details Tab ################################# -->
+					<div class="tab-content">
+
+            <br>
+						<div class="tab-pane active" id="appointmentTab">
+              <table data-serverside-paging data-paging="paging" data-search="search" class="table table-bordered table-condensed table-striped table-hover dataTable">
+                  <thead>
+
+                  <tr >
+                      <th width="5%">ลำดับ</th>
+                      <th>รายการที่ต่อประกัน</th>
+                      <th width="20%">ราคา (บาท)</th>
+                      <th width="6%">แก้ไข/ลบ</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr data-ng-repeat="gol in getInsureList">
+                      <td class="text-center">{{$index+1}} </td>
+                      <td class="text-left">{{gol.order_list}}</td>
+                      <td class="text-right">{{gol.order_num}}</td>
+                      <td class="action">
+                          <a href="" data-tooltip="แก้ไข" data-toggle="modal" data-target="#history"
+                             data-ng-click="editInsure(gol.order_id)">
+                             <i class="fa fa-pencil-square-o"></i></a>
+                          <a href="" data-tooltip="ลบ" data-toggle="modal" data-target="#history"
+                             data-ng-click="deleteInsure(gol.order_id)">
+                             <i class="fa fa-trash-o"></i></a>
+                      </td>
+                  </tr>
+                  <tr data-ng-show="getOrderList == '' || getOrderList == undefined">
+                    <td colspan="10" data-translate>ไม่มีข้อมูล</td>
+                  </tr>
+                  </tbody>
+              </table>
+							<div class="row form-group">
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">เลขครุภัณฑ์ :</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="getJobById.dur_numoe" data-ng-disabled="true">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+									</div>
+								</div>
+								<div class="col-sm-8">
+									<label class="col-sm-2 text-inline">ยี้ห้อ :</label>
+									<div class="col-sm-10">
+										<input class="form-control input-xs" name="assured" type="text" data-ng-model="getJobById.dur_naoe" data-ng-disabled="true">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+									</div>
+								</div>
+
+							</div><!-- row 1 -->
+							<div class="row form-group">
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">บริษัท :</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" name="carNo" type="text" data-ng-model="getJobById.dur_company" data-ng-disabled="true">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleName.$error.required">Required!</span> -->
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-4 text-inline">วิธีการได้มา :</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="getJobById.dur_acquired" data-ng-disabled="true" style="margin-left: 2px;">
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">เงิน :</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" name="engineNo" type="text"  data-ng-model="getJobById.dur_tom" data-ng-disabled="true">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleName.$error.required">Required!</span> -->
+									</div>
+								</div>
+							</div><!-- row 2 -->
+              <div class="row form-group">
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">ราคา :</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" name="carNo" type="text" data-ng-model="getJobById.dur_price" data-ng-disabled="true">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleName.$error.required">Required!</span> -->
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-4 text-inline">หน่วยงาน :</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="getJobById.costName" data-ng-disabled="true" style="margin-left: 2px;">
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">ปีจัดซื้อ :</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" name="engineNo" type="text"  data-ng-model="getJobById.dur_year" data-ng-disabled="true">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleName.$error.required">Required!</span> -->
+									</div>
+								</div>
+							</div><!-- row 2 -->
+							<div class="box box-solid box-blue">
+								<div class="box-header">
+									<div class="box-tools pull-left">
+										<button data-box-collapse class="btn btn-default btn-sm">
+											<i class="fa fa-chevron-up"></i>
+										</button>
+									</div>
+									<h4 class="box-title">รายละเอียดงานส่งซ่อม</h4>
+								</div><!-- /.box-header -->
+								<div class="box-body">
+
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">วันที่ร้องขอ :</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="contactName" type="text" data-ng-model="getSendTo.dateStr" data-ng-disabled="true">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-4 text-inline">เวลา :</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="contactNo" type="text" data-ng-model="getSendTo.timeStr" data-ng-disabled="true" style="margin-left: 2px;">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">ร้องขอโดย :</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="appointmentDate" type="text" data-ng-model="getSendTo.userName" data-ng-disabled="true" >
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+									</div><!-- row 2 -->
+
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline"><b>เหตุผลที่แจ้ง :</b></label>
+										</div>
+									</div><!-- row 3 -->
+
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">เหตุผลที่ต้องส่งซ่อม :</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="province" type="text" data-ng-model="getSendTo.st_comment" data-ng-disabled="true">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+
+									</div><!-- row 4 -->
+
+
+								</div>
+							</div><!-- /.box make appointment -->
+
+              <div class="box box-solid box-blue">
+								<div class="box-header">
+									<div class="box-tools pull-left">
+										<button data-box-collapse class="btn btn-default btn-sm">
+											<i class="fa fa-chevron-up"></i>
+										</button>
+									</div>
+									<h4 class="box-title">รายละเอียดงานแจ้งซ่อม</h4>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-xs btn-success"     data-ng-click="saveJobDetail()" >
+                      <i class="fa fa-floppy-o"></i><span>บันทึก</span>
+            				</button>
+            			</div>
+								</div><!-- /.box-header -->
+								<div class="box-body">
+
+                  <div class="row form-group">
+                    <div class="col-sm-4">
+                      <label class="col-sm-5 text-inline">วันที่รับงาน :</label>
+                      <div class="col-sm-7">
+                        <input class="form-control input-xs" name="contactName" type="text" data-ng-model="getJobById.job_date_acc" data-ng-disabled="true">
+                        <!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <label class="col-sm-4 text-inline">เวลา :</label>
+                      <div class="col-sm-7">
+                        <input class="form-control input-xs" name="contactNo" type="text" data-ng-model="getJobById.job_time_acc" data-ng-disabled="true" style="margin-left: 2px;">
+                        <!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <label class="col-sm-5 text-inline">รับงานโดย :</label>
+                      <div class="col-sm-7">
+                        <input class="form-control input-xs" name="appointmentDate" type="text" data-ng-model="getJobById.userName" data-ng-disabled="true" >
+                        <!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+                      </div>
+                    </div>
+                  </div><!-- row 2 -->
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline"><b>อาการที่แจ้ง </b></label>
+										</div>
+									</div><!-- row 3 -->
+
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">อาการเบื้องต้น :</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="province" type="text" data-ng-model="getJobById.job_header" >
+											</div>
+										</div>
+										<div class="col-sm-8">
+											<label class="col-sm-2 text-inline">รายละเอียด :</label>
+											<div class="col-sm-10">
+												<textarea class="form-control input-xs" name="subDistrict" data-ng-model="getJobById.job_desc" ></textarea>
+											</div>
+										</div>
+									</div><!-- row 4 -->
+								</div>
+							</div><!-- /.box make appointment -->
+						</div>
+						<!-- #################################### Car Check Details Tab ################################# -->
+            <div class="tab-pane" id="printPdf">
+              <div class="row form-group">
+								<div class="col-sm-12">
+
+									<div class="col-sm-3">
+										<input class="form-control input-xs" type="text" data-ng-model="criteria.no_pap" >
+									</div>
+								</div>
+							</div><!-- row 2 -->
+              <div class="row form-group">
+								<div class="col-sm-12">
+									<div class="col-sm-3">
+										<input class="form-control input-xs" type="text" data-ng-model="criteria.head_pap" >
+									</div>
+								</div>
+							</div><!-- row 2 -->
+              <div class="row form-group">
+                <div class="col-sm-12">
+                  <label class="col-sm-2 text-inline"></label>
+                  <div class="col-sm-12">
+                    <input class="form-control input-xs" type="text" data-ng-model="criteria.detail1_pap" >
+                  </div>
+                </div>
+              </div><!-- row 1 -->
+              <div class="row form-group">
+                <div class="col-sm-12">
+                  <label class="col-sm-2 text-inline"></label>
+                  <div class="col-sm-12">
+                    <input class="form-control input-xs" type="text" data-ng-model="criteria.detail2_pap" >
+                  </div>
+                </div>
+              </div><!-- row 1 -->
+              <div class="row form-group">
+                <div class="col-sm-12">
+                  <label class="col-sm-2 text-inline"></label>
+                  <div class="col-sm-12">
+                    <input class="form-control input-xs" type="text" data-ng-model="criteria.detail3_pap" >
+                  </div>
+                </div>
+              </div><!-- row 1 -->
+              <div class="row form-group">
+                <div class="col-sm-12">
+                  <label class="col-sm-2 text-inline"></label>
+                  <div class="col-sm-12">
+                    <input class="form-control input-xs" type="text" data-ng-model="criteria.detail4_pap" >
+                  </div>
+                </div>
+              </div><!-- row 1 -->
+			  <div class="row form-group">
+                <div class="col-sm-12">
+                  <label class="col-sm-2 text-inline"></label>
+                  <div class="col-sm-12">
+                    <input class="form-control input-xs" type="text" data-ng-model="criteria.detail5_pap">
+                  </div>
+                </div>
+              </div><!-- row 1 -->
+              <table data-serverside-paging data-paging="paging" data-search="search" class="table table-bordered table-condensed table-striped table-hover dataTable">
+                  <thead>
+
+                  <tr >
+                      <th width="5%">ลำดับ</th>
+                      <th>รายการอุปกรณ์ที่สั่งซื้อ</th>
+                      <th width="5%">จำนวน(ชุด)</th>
+                      <th width="6%">แก้ไข/ลบ</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr data-ng-repeat="gol in getOrderList">
+                      <td class="text-center">{{$index+1}} </td>
+                      <td class="text-left">{{gol.order_list}}</td>
+                      <td class="text-right">{{gol.order_num}}</td>
+                      <td class="action">
+                          <a href="" data-tooltip="แก้ไข" data-toggle="modal" data-target="#history"
+                             data-ng-click="editOrder(gol.order_id)">
+                             <i class="fa fa-pencil-square-o"></i></a>
+                          <a href="" data-tooltip="ลบ" data-toggle="modal" data-target="#history"
+                             data-ng-click="deleteOrder(gol.order_id)">
+                             <i class="fa fa-trash-o"></i></a>
+                      </td>
+                  </tr>
+                  <tr data-ng-show="getOrderList == '' || getOrderList == undefined">
+                    <td colspan="10" data-translate>ไม่มีข้อมูล</td>
+                  </tr>
+                  </tbody>
+              </table>
+
+						</div>
+					</div>
+				</div>
+			</form>
+		</div><!-- /.box-body -->
+	</div><!-- /.box -->
+</div>

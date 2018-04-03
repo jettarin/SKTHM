@@ -1,0 +1,109 @@
+<ol class="breadcrumb">
+    <li><a href=""><i class="fa fa-cogs"></i> เมนู</a></li>
+    <li class="active"> แก้ไขรายละเอียดครุภัณฑ์</li>
+</ol>
+
+
+<div class="content">
+	<div class="box box-solid box-blue">
+		<div class="box-header">
+
+			<div class="box-tools pull-left">
+				<button data-box-collapse class="btn btn-default btn-sm">
+					<i class="fa fa-chevron-up"></i>
+				</button>
+			</div>
+      <h3 class="box-title" >รายละเอียดของงาน</h3>
+
+			<div class="box-tools pull-right">
+        <button class="btn btn-xs btn-success"  data-ng-click="edit()">
+          <i class="fa fa-edit"></i><span> แก้ไข</span>
+				</button>
+
+
+				<button class="btn btn-xs btn-warning" data-ng-click="back()">
+					<i class="fa fa-arrow-left"></i><span>กลับ</span>
+				</button>
+
+			</div>
+		</div><!-- /.box-header -->
+		<div class="box-body">
+			<form name="form" data-unsaved-warning="true" novalidate>
+
+
+
+
+        <h3 style="color:{{dur_newCo}}">แก้ไขครูภัณฑ์</h3>
+				<div class="nav-tabs-custom">
+
+					<!-- #################################### Appointment Details Tab ################################# -->
+					<div class="tab-content">
+            <a id="add_row" class="btn btn-xs btn-primary pull-left" > <i class="fa fa-plus-square"></i>  เพิ่มคุณสมบัติ</a><a id='delete_row' class="pull-right  btn btn-xs btn-danger"><i class="fa fa-minus-circle"></i> ลบคุณสมบัติ</a>
+            <br>
+            <div class="box-body">
+                <div class="row form-group">
+                    <div class="dataTables_wrapper">
+                        <table data-serverside-paging data-paging="paging" data-search="search" id="tab_logic" class="table table-bordered table-condensed table-striped table-hover dataTable">
+                            <thead>
+                              <tr>
+                                <th colspan="2" style="text-align: left;width:60%"><input type="text" class="form-control input-xs" placeholder="รายการ" data-ng-model="dur_list" style="color:{{dur_newCo}}"></th>
+                                <th colspan="5" style="text-align: left;"><input type="text" class="form-control input-xs" placeholder="ราคา" data-ng-model="dur_price" style="color:{{dur_newCo}}" ></th>
+                              </tr>
+                              <tr>
+                                  <th colspan="2" style="text-align: left;width:60%"><input type="text" class="form-control input-xs" placeholder="แบบ/ยี่ห้อ" data-ng-model="dur_naoe" style="color:{{dur_newCo}}"></th>
+                                  <th colspan="5" style="text-align: left;"><input type="text" class="form-control input-xs" placeholder="หมายเลขพัสดุ : 123-74440-010-0002" data-ng-model="dur_numoe" style="color:{{dur_newCo}}"></th>
+                              </tr>
+                              <tr>
+                                  <th colspan="2" style="text-align: left;width:60%"><input type="text" class="form-control input-xs" placeholder="เงิน" data-ng-model="dur_tom" style="color:{{dur_newCo}}"></th>
+                                  <th colspan="5" style="text-align: left;" ><input type="text" class="form-control input-xs" placeholder="ปี" data-ng-model="dur_year" style="color:{{dur_newCo}}"></th>
+                              </tr>
+                              <tr>
+                                  <th colspan="2" style="text-align: left;width:60%">
+                                    <select class="form-control input-xs" data-ui-select2  data-ng-model="dur_company"  data-tooltip="ร้านค้า/บริษัท">
+                                      <option value=""></option>
+                                      <option	data-ng-repeat="dep in getCompanyList" value="{{dep.com_name}}">{{dep.com_name}}</option>
+                                    </select>
+                                  </th>
+                                  <th colspan="5" style="text-align: left;">
+                                    <div class='col-sm-12'
+                                  data-ng-model="getDurableObj.dur_dop.date" id="coverDate">
+                                  <input type='text' class="form-control input-xs" data-ng-model="getDurableObj.dur_dop.date">
+
+                                </div></th>
+
+                              </tr>
+                              <tr>
+                                  <th colspan="2" style="text-align: left;width:60%">
+                                    <select class="form-control input-xs" data-ui-select2
+                                      data-ng-model="dur_department" >
+                                      <option value="">หน่วยงาน</option>
+                                      <option	data-ng-repeat="dep in getDepartmentList" value="{{dep.Cost_SKTHM}}" >{{dep.Cost_name}}</option>
+                                    </select>
+                                  </th>
+                                  <th colspan="5" style="text-align: left;"><input type="text" class="form-control input-xs" placeholder="วิธีการได้มา" data-ng-model="dur_acquired" style="color:{{dur_newCo}}"></th>
+                              </tr>
+                                <tr data-ng-hide="getDurableDetailList==''||getDurableDetailList==null">
+                                    <th colspan="3" class="text-center">รายการคุณสมบัติ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                      <tr data-ng-repeat="gdbn in getDurableDetailList">
+                                        <td colspan="3" class="text-left"><a href="" data-ng-click="editDurableDetail(gdbn.de_id)">{{$index+1}}.{{gdbn.de_desc}}</td>
+                                      </tr>
+                                      <tr id='addr0'>
+                                          <td colspan="3"><input type="text" name='deli_his0' data-ng-model="criteria.deli_his0" class="form-control input-xs"/></td>
+                                      <tr id='addr1'></tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div><!-- box body -->
+
+						<!-- #################################### Car Check Details Tab ################################# -->
+					</div>
+				</div>
+			</form>
+		</div><!-- /.box-body -->
+	</div><!-- /.box -->
+</div>

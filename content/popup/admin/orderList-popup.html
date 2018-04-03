@@ -1,0 +1,69 @@
+
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" data-ng-click="cancel()"><span
+                data-aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <span lang="En"  style="color: green; font-size: 24px; font-weight: bold; line-height: 30px;">รายการสั่งซื้ออุปกรณ์ </span>&nbsp;&nbsp;
+
+    </div>
+    <div class="modal-body">
+
+      <div class="content">
+        <div class="box-body">
+    			<form name="form" data-unsaved-warning="true" novalidate>
+
+    					<!-- #################################### Appointment Details Tab ################################# -->
+    					<div class="tab-content">
+                <a id="add_row" class="btn btn-xs btn-primary pull-left"  data-ng-click="clickAdd()"> <i class="fa fa-plus-square"></i>  เพิ่มอุปกรณ์</a><a id='delete_row' class="pull-right  btn btn-xs btn-danger" data-ng-click="clickDelete()"><i class="fa fa-minus-circle"></i> ลบประวัติ</a>
+                <br>
+                <br>
+
+                    <div class="row form-group">
+                        <div class="dataTables_wrapper">
+                            <table data-serverside-paging data-paging="paging" data-search="search" id="tab_logic" class="table table-bordered table-condensed table-striped table-hover dataTable">
+                                <thead>
+
+                                    <tr >
+
+                                        <th  width="10%" class="text-center"> ลำดับ</th>
+                                        <th  class="text-center">รายการ</th>
+                                        <th  width="5%" class="text-center">  จำนวน(ชุด)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                          <tr data-ng-show="i==1">
+                                            <td colspan="3">ไม่มีข้อมูล</td>
+                                          </tr>
+
+                                          <tr id='addr0'>
+                                          </tr>
+                                          <tr id='addr1'></tr>
+
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div><!-- box body -->
+
+    						<!-- #################################### Car Check Details Tab ################################# -->
+
+    				</div>
+    			</form>
+
+      </div>
+
+    </div>
+        <div class="modal-footer">
+
+          <span style="color:red;"><b>{{errorMessage}}</b></span>
+
+          <button type="button" class="btn btn-success btn-xs" data-dismiss="modal" data-ng-click="save()">
+              <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;<span data-translate> บันทึก</span>
+          </button>
+            <button type="button" class="btn btn-warning btn-xs" data-dismiss="modal" data-ng-click="cancel()">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;<span data-translate>ยกเลิก</span>
+            </button>
+        </div>

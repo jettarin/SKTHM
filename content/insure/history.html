@@ -1,0 +1,161 @@
+<!-- ######################################## [START] BREADCRUMB ######################################## -->
+<ol class="breadcrumb">
+	<li><a href="#/home-dashboard"><i class="fa fa-share"></i> สั่งซื้ออุปกรณ์</a></li>
+	<li class="active"> ประวัติสั่งซื้ออุปกรณ์</li>
+</ol>
+<!-- ######################################## [ END ] BREADCRUMB ######################################## -->
+<!-- ######################################## [START] CONTENT ######################################## -->
+<div class="content">
+	<div class="box box-solid box-blue">
+		<div class="box-header">
+			<div class="box-tools pull-left">
+				<button data-box-collapse class="btn btn-default btn-sm">
+					<i class="fa fa-chevron-up"></i>
+				</button>
+			</div>
+			<h3 class="box-title">ค้นหา</h3>
+			<div class="box-tools pull-right">
+				<button class="btn btn-xs btn-primary" data-ng-click="search()">
+					<i class="fa fa-search"></i><span>ค้นหา</span>
+				</button>
+				<button class="btn btn-xs btn-warning" data-ng-click="clear()">
+					<i class="fa fa-times"></i><span>ล้าง</span>
+				</button>
+			</div>
+		</div>
+		<!-- /.box-header -->
+		<div class="box-body">
+			<div class="row form-group">
+			<div class="col-sm-4">
+					<label class="col-sm-5 text-inline">เลขครุภัณฑ์ :</label>
+					<div class="col-sm-7">
+						<input type="text" class="form-control input-xs" data-ng-model="criteria.dur_numoe">
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<label class="col-sm-5 text-inline">ยี่ห้อ :</label>
+					<div class="col-sm-7">
+						<input type="text" class="form-control input-xs" data-ng-model="criteria.dur_naoe">
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<label class="col-sm-5 text-inline">หน่วยงาน :</label>
+					<div class="col-sm-7">
+						<select class="form-control input-xs" data-ui-select2
+							data-ng-model="criteria.dep">
+							<option value=""></option>
+							<option	data-ng-repeat="dep in getDepartment" value="{{dep.Cost_SKTHM}}">{{dep.Cost_name}}</option>
+						</select>
+					</div>
+				</div>
+
+			</div>
+			<!-- end row 1 -->
+			<div class="row form-group">
+
+				<div class="col-sm-4">
+					<label class="col-sm-5 text-inline">วันที่เริ่มต้น :</label>
+					<div class="col-sm-7">
+						<div class='input-group date' data-datepicker
+							data-ng-model="criteria.date_f" id="coverDate">
+							<input type='text' class="form-control input-xs col-xs-6">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<label class="col-sm-5 text-inline">ถึงวันที่ :</label>
+					<div class="col-sm-7">
+						<div class='input-group date' data-datepicker
+							data-ng-model="criteria.date_t" id="coverDate">
+							<input type='text' class="form-control input-xs col-xs-6">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
+					</div>
+				</div>
+
+				<!-- end row 2 -->
+			</div>
+
+
+		</div>
+
+		<!-- /.box-body -->
+	</div>
+	<!-- /.box -->
+	<div class="dataTables_wrapper">
+		<table data-serverside-paging data-paging="paging"
+			data-search="search"
+			class="table table-bordered table-condensed table-striped table-hover dataTable">
+			<thead>
+				<tr>
+					<th >ลำดับ</th>
+					<th >อาการเบื้องต้น</th>
+					<th >เลขครุภัณฑ์</th>
+					<th >ยี่ห้อ</th>
+					<th >หน่วยงาน</th>
+					<th >ผู้แจ้ง</th>
+					<th >ผู้รับแจ้ง</th>
+					<th >วันที่แจ้ง</th>
+					<th >สถานะ</th>
+					<th data-ng-show="user_status=='admin'">ปิดงาน</th >
+					<th>รายละเอียด</th >
+
+				</tr>
+			</thead>
+			<tbody id="datatable_tbody">
+				<tr data-ng-repeat="gjh in getJobHistoryList">
+					<td>{{$index+1}}</td>
+					<td class="text-left">{{gjh.job_header}}</td>
+					<td class="text-right">{{gjh.dur_numoe}}</td>
+					<td class="text-left">{{gjh.dur_naoe}}</td>
+					<td class="text-left">{{gjh.nameOfDepartment}}</td>
+					<td class="text-left">{{gjh.offerName}}</td>
+					<td class="text-left">{{gjh.offerNameAcc}}</td>
+					<td>{{gjh.job_date_created}}</td>
+					<td style="color:blue;">รับส่งมอบแล้ว</td>
+					<td class="action" data-ng-show="user_status=='admin'">
+							<a href="" data-tooltip="ปิดงาน" data-toggle="modal" data-target="#history"
+								 data-ng-click="finishJob(gjh.job_id,gjh.job_dur_id,gjh.job_type)"><i
+											class="fa fa-check-circle"></i></a>
+					</td>
+					<td class="action" data-ng-show="user_status=='admin' || user_status=='head_admin'">
+							<a href="" data-tooltip="รายละเอียด" data-toggle="modal" data-target="#history"
+								 data-ng-click="gotoHistoryDetail(gjh.job_id,gjh.job_dur_id)"><i
+											class="fa fa-eye"></i></a>
+					</td>
+					<tr data-ng-show="getJobHistoryList == '' || getJobHistoryList == undefined">
+						<td colspan="11" data-translate>ไม่มีข้อมูล</td>
+					</tr>
+
+				</tr>
+
+
+
+
+			</tbody>
+		</table>
+
+		<div class="row">
+				<div class="col-sm-4">
+
+				</div>
+				<div class="col-sm-4">
+						<div class="dataTables_info">แสดง {{paging.showing.start}}
+								ถึง {{paging.showing.end}} จาก {{paging.showing.total}} รายการ</div>
+				</div>
+				<div class="col-sm-4">
+						<div class="dataTables_paginate paging_bootstrap">
+								<div data-pagination data-total-items="paging.totalItems"
+										 data-items-per-page="paging.limit" data-page="paging.pageNumber"
+										 data-max-size="5" data-boundary-links="true"
+										 data-on-select-page="selectPage(page)"></div>
+						</div>
+				</div>
+		</div>
+		<!-- end table footer -->
+	</div>
+	<!-- end datatable_wrapper -->
+</div>
+
+	<!-- content -->

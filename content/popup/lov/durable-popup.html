@@ -1,0 +1,39 @@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" data-ng-click="cancel()"><span
+                data-aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <span lang="En"  style="color: green; font-size: 24px; font-weight: bold; line-height: 30px;"> แก้ไขรายละเอียด</span>&nbsp;&nbsp;
+
+    </div>
+    <div class="modal-body">
+        <!-- ############# Content Of reserv ################## -->
+        <div class="content">
+            <div class="row">
+                <!-- ######## FROM RESERV ############## -->
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>รายการ :</strong></label>
+
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control input-xs" data-ng-model="criteria.de_desc" required="true"/>
+                        <span class="help-block-error" data-ng-show="commentError">กรุณากรอกชื่อ !</span>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+
+
+
+        </div>
+        </div>
+        <!-- <pre>{{getSubj | json}}</pre> -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-xs" data-dismiss="modal" data-ng-click="save()">
+              <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;<span data-translate> บันทึก</span>
+          </button>
+          <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal" data-ng-click="cancel()">
+              <i class="fa fa-times"></i>&nbsp;&nbsp;<span data-translate>ยกเลิก</span>
+          </button>
+        </div>
+    </div>

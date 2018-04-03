@@ -1,0 +1,453 @@
+<ol class="breadcrumb">
+	<li><a href="#/home-dashboard"><i class="fa fa-home"></i> Home</a></li>
+	<li><a href="#/all-review">Risk Survey</a></li>
+	<li><a href="#/surveyor-todo-list">Surveyor To Do List</a></li>
+	<li data-ng-show="mode == 'create'" class="active">Create</li>
+	<li data-ng-show="mode == 'edit'" class="active">Edit</li>
+</ol>
+
+<div class="content">
+	<div class="box box-solid box-blue">
+		<div class="box-header">
+			<div class="box-tools pull-left">
+				<button data-box-collapse class="btn btn-default btn-sm">
+					<i class="fa fa-chevron-up"></i>
+				</button>
+			</div>
+			<h3 class="box-title" data-ng-show="mode == 'create'">Create</h3>
+			<h3 class="box-title" data-ng-show="mode == 'edit'">Edit</h3>
+			<div class="box-tools pull-right">
+				<button class="btn btn-xs btn-success" data-ng-click="save()">
+					<i class="fa fa-save"></i><span>Save</span>
+				</button>
+				<button class="btn btn-xs btn-warning" data-ng-click="back()">
+					<i class="fa fa-arrow-left"></i><span>Back</span>
+				</button>
+			</div>
+		</div><!-- /.box-header -->
+		<div class="box-body">
+			<form name="form" data-unsaved-warning="true" novalidate>
+				<div class="nav-tabs-custom">
+					<ul class="nav nav-tabs">
+						<li id="appointment" class="active"><a href="" data-target="#appointmentTab" data-toggle="tab" data-translate>Appointment Details</a></li>
+						<li id="car"><a href="" data-target="#carTab" data-toggle="tab" data-translate>Car Check Details</a></li>
+					</ul>
+					<!-- #################################### Appointment Details Tab ################################# -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="appointmentTab">
+							<div class="row form-group">
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Application No</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="detailList.appNo">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Assured</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" name="assured" type="text" value="นายมาโนช ไม้กลัด">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Coverage Date</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" name="coverageDate" type="text" value="01/01/57-01/01/58">
+									</div>
+								</div>
+							</div><!-- row 1 -->
+							<div class="row form-group">
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Car No</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" name="carNo" type="text" data-ng-model="detailList.carNo">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleName.$error.required">Required!</span> -->
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Chassis No</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" value="{{detailList.chassisNo}}">
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Engine No</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" name="engineNo" type="text" value="DLFSOWO39JLERLD">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleName.$error.required">Required!</span> -->
+									</div>
+								</div>
+							</div><!-- row 2 -->
+							<div class="box box-solid box-blue">
+								<div class="box-header">
+									<div class="box-tools pull-left">
+										<button data-box-collapse class="btn btn-default btn-sm">
+											<i class="fa fa-chevron-up"></i>
+										</button>
+									</div>
+									<h4 class="box-title">Make Appointment</h4>
+								</div><!-- /.box-header -->
+								<div class="box-body">
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Appointment Status</label>
+											<div class="col-sm-7">
+												<input type="checkbox" data-size="mini" name="appMentStatus" value="{{detailList.appointmentStatus}}">
+											</div>
+										</div>
+									</div><!-- row 1 -->
+									
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Contact Name</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="contactName" type="text" value="นายมาโนช ไม้กลัด">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Contact No</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="contactNo" type="text" value="02-0020023">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Appointment Date</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="appointmentDate" type="text" value="01/05/57 10:00:00">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+									</div><!-- row 2 -->
+									
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline"><b>Appointment Place</b></label>
+										</div>
+									</div><!-- row 3 -->
+									
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Province</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="province" type="text" value="กรุงเทพมหานคร">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Sub-District</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="subDistrict" type="text" value="จตุจักร">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">District</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="district" type="text" value="จันทรเกษม">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+									</div><!-- row 4 -->
+									
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Place</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="place" type="text" value="รัชดาภิเษก 32">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Remark</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="remark" type="text" value="">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+									</div><!-- row 5 -->
+								</div>
+							</div><!-- /.box make appointment -->
+						
+							<div class="box box-solid box-blue">
+								<div class="box-header">
+									<div class="box-tools pull-left">
+										<button data-box-collapse class="btn btn-default btn-sm">
+											<i class="fa fa-chevron-up"></i>
+										</button>
+									</div>
+									<h4 class="box-title">Authority</h4>
+								</div><!-- /.box-header -->
+								<div class="box-body">
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Authority Type</label>
+											<div class="col-sm-7">
+												<select class="form-control input-xs" data-ui-select2 data-ng-model="detailList.authority">
+													<option value=""></option>
+													<option data-ng-repeat="authority in authorityList" value="{{authority.authorityCode}}">{{authority.authorityCode}}: {{authority.authorityName}}</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Branch</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="branch" type="text" value="กรุงเทพ">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Contact Name</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="contactName" type="text" value="นางเวลา  บุตร">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+									</div><!-- row 1 -->
+									
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Contact No</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="contactNo" type="text" value="02-0002000">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Service Charge</label>
+											<div class="col-sm-7">
+												<select class="form-control input-xs" data-ui-select2 data-ng-model="detailList.serviceCharge">
+													<option value=""></option>
+													<option data-ng-repeat="authority in authorityList" value="{{authority.authorityCode}}">{{authority.authorityCode}}: {{authority.authorityName}}</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Amount</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="amount" type="text" value="200 บาท">
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+									</div><!-- row 2 -->
+									
+									<div class="row form-group">
+										<div class="dataTables_wrapper">
+										 	<table data-serverside-paging data-paging="paging" data-search="search" class="table table-bordered table-condensed table-striped table-hover dataTable">
+										 		<thead>
+													<tr>
+														<th data-model="times" data-translate>Times</th>
+														<th data-model="appointmentBy" data-translate>Appointment By</th>
+														<th data-model="appointmentDate" data-translate>Appointment Date</th>
+														<th data-model="status" data-translate>Status</th>
+														<th data-model="remark" data-translate>Remark</th>
+													</tr>
+												</thead>
+												<tbody id="datatable_tbody">
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-left">นายศักดา ทุบตึก</td>
+														<td class="text-left">01/05/2557 10:00</td>
+														<td class="text-left">นัดหมายไม่ได้</td>
+														<td class="text-left">ติดต่อไม่ได้</td>
+													</tr>
+													<tr>
+														<td class="text-center">2</td>
+														<td class="text-left">นายศักดา ทุบตึก</td>
+														<td class="text-left">01/05/2557 11:00</td>
+														<td class="text-left">นัดหมายไม่ได้</td>
+														<td class="text-left">ติดต่อไม่ได้</td>
+													</tr>
+													<tr>
+														<td class="text-center">3</td>
+														<td class="text-left">นายศักดา ทุบตึก</td>
+														<td class="text-left">01/05/2557 12:00</td>
+														<td class="text-left">นัดหมายได้</td>
+														<td class="text-left"></td>
+													</tr>
+												</tbody>
+										 	</table>
+										 </div>
+									</div><!-- row 3 -->
+								</div>
+							</div><!-- /.box Authority-->
+						</div>
+						
+						<!-- #################################### Car Check Details Tab ################################# -->
+						<div class="tab-pane" id="carTab">
+							<div class="row form-group">
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Application No</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" type="text" data-ng-model="detailList.appNo">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Assured</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" name="assured" type="text" value="นายมาโนช ไม้กลัด">
+										<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Coverage Date</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" name="coverageDate" type="text" value="01/01/57-01/01/58" readonly>
+									</div>
+								</div>
+							</div><!-- row 1 -->
+							<div class="row form-group">
+								<div class="col-sm-4">
+									<label class="col-sm-5 text-inline">Reason</label>
+									<div class="col-sm-7">
+										<input class="form-control input-xs" style=" width: 400px;" type="text">
+									</div>
+								</div>
+							</div><!-- row 2 -->
+							
+							<div class="box box-solid box-blue">
+								<div class="box-header">
+									<div class="box-tools pull-left">
+										<button data-box-collapse class="btn btn-default btn-sm">
+											<i class="fa fa-chevron-up"></i>
+										</button>
+									</div>
+									<h4 class="box-title">Car Check Details</h4>
+								</div><!-- /.box-header -->
+								<div class="box-body">
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Checked Date</label>
+											<div class="col-sm-7">
+												<div class='input-group date' data-datepicker data-ng-model="criteria.checkDate" id="chkDate">
+													<input type='text' class="form-control input-xs col-xs-6"> <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>
+											</div>
+										</div>
+										<!-- <div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Checked Date</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="checkedDate" type="text" value="01/05/57 10:00:00">
+											</div>
+										</div> -->
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Status</label>
+											<div class="col-sm-7">
+												<select class="form-control input-xs" data-ng-model="criteria.status">
+													<option value="">All</option>
+													<option value="A">Active</option>
+													<option value="I">Inactive</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Checked By</label>
+											<div class="col-sm-7">
+												<input class="form-control input-xs" name="checkedBy" type="text" value="นายมาโนช ไม้กลัด" readonly>
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+									</div><!-- row 1 -->
+									
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Checked Details</label>
+											<div class="col-sm-7">
+												<textarea class="form-control col-sm-12" rows="5" cols="40" maxlength="50" name="checkedDetail" style="margin-left: 0px; margin-right: 0px;  width: 400px;"></textarea>
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+									</div><!-- row 2 -->
+									
+								</div>
+							</div><!-- /.box Car Check Details -->
+							
+							<div class="box box-solid box-blue">
+								<div class="box-header">
+									<div class="box-tools pull-left">
+										<button data-box-collapse class="btn btn-default btn-sm">
+											<i class="fa fa-chevron-up"></i>
+										</button>
+									</div>
+									<div class="box-tools pull-right">
+										<button class="btn btn-xs btn-success" data-ng-click="attachFile()">
+											<i class="fa fa-paperclip"></i><span>Attach</span>
+										</button>
+									</div>
+									<h4 class="box-title">Attach File</h4>
+								</div><!-- /.box-header -->
+								<div class="box-body">
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">File</label>
+											<div class="col-sm-7">
+												<div class="input-group">
+													<input class="form-control input-xs" style=" width: 200px;" id="upload" readonly>
+													<span class="btn btn-default fileinput-button input-group-addon">
+														<i class="fa fa-upload"></i><span>Browse</span>
+														<input type="file" id="inputFile" data-filename-placement="inside">
+														<!-- <input type="file" multiple data-fileupload data-accept="xlsx" data-on-uploaded="uploaded(file, originName)" name="impFile" required> -->
+													</span>
+												</div>
+											</div>
+										</div>
+									</div><!-- row 1 -->
+									<div class="row form-group">
+										<div class="col-sm-4">
+											<label class="col-sm-5 text-inline">Details</label>
+											<div class="col-sm-7">
+												<textarea class="form-control col-sm-12" rows="5" cols="40" maxlength="50" name="checkedDetail" style="margin-left: 0px; margin-right: 0px;  width: 400px;"></textarea>
+												<!-- <span class="help-block-error" data-ng-show="isSubmit && form.roleCode.$error.required">Required!</span> -->
+											</div>
+										</div>
+									</div><!-- row 2 -->
+									
+									<div class="row form-group">
+										<button class="btn btn-xs btn-danger" data-ng-click="deleteSelected()">
+											<i class="fa fa-trash-o"></i><span>Delete</span>
+										</button>
+									</div>
+									<div class="row form-group">
+										<div class="dataTables_wrapper">
+										 	<table data-serverside-paging data-paging="paging" data-search="search" class="table table-bordered table-condensed table-striped table-hover dataTable">
+										 		<thead>
+													<tr>
+														<th width="20px">
+															<input data-i-check-all="row_sel" type="checkbox">
+														</th>
+														<th data-model="appointmentBy" data-translate>File Name</th>
+														<th data-model="appointmentDate" data-translate>File Size</th>
+														<th data-model="status" data-translate>Remark</th>
+													</tr>
+												</thead>
+												<tbody id="datatable_tbody">
+													<tr>
+														<td class="text-center"><input data-i-check-all="row_sel" type="checkbox"></td>
+														<td class="text-left">1001.jpg</td>
+														<td class="text-left">500 kb</td>
+														<td class="text-left">ด้านหน้ารถ</td>
+													</tr>
+													<tr>
+														<td class="text-center"><input data-i-check-all="row_sel" type="checkbox"></td>
+														<td class="text-left">2002.jpg</td>
+														<td class="text-left">700 kb</td>
+														<td class="text-left">ด้านข้างรถ</td>
+													</tr>
+												</tbody>
+										 	</table>
+										 </div>
+									</div><!-- row 3 -->
+									
+								</div>
+							</div><!-- /.box Attachment -->
+							
+						</div>
+					</div>
+				</div>
+			</form>
+		</div><!-- /.box-body -->
+	</div><!-- /.box -->
+</div>

@@ -1,0 +1,68 @@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" data-ng-click="cancel()"><span
+                data-aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <span lang="En"  style="color: green; font-size: 24px; font-weight: bold; line-height: 30px;">แบบฟร์อมรับส่งมอบ</span>&nbsp;&nbsp;
+
+    </div>
+    <div class="modal-body">
+        <!-- ############# Content Of reserv ################## -->
+        <div class="content">
+
+          <div class="box-body">
+              <div class="row form-group">
+                  <div class="dataTables_wrapper">
+                      <table data-serverside-paging data-paging="paging" data-search="search" class="table table-bordered table-condensed table-striped table-hover dataTable">
+                          <thead>
+                            <tr>
+            									<th colspan="6" style="text-align: left;width:60%">รายการ : {{getDurableById.dur_list}}</th>
+            									<th colspan="4" style="text-align: left;">หมายเลขพัสดุ : {{getDurableById.dur_numoe}}</th>
+            								</tr>
+            								<tr>
+                                <th colspan="6" style="text-align: left;width:60%">แบบ : {{getDurableById.dur_naoe}}</th>
+                                <th colspan="4" style="text-align: left;">ปี : {{getDurableById.dur_year}}</th>
+                            </tr>
+                            <tr>
+                                <th colspan="6" style="text-align: left;width:60%">หมายเลขเครื่อง</th>
+                                <th colspan="4" style="text-align: center;">วันเดือนปีที่ได้รับ : {{dur_date}}</th>
+                            </tr>
+                            <tr>
+                                  <th colspan="3" style="text-align: center;">วันเดือนปี</th>
+                                  <th colspan="2" style="text-align: center;">ประวัติ</th>
+                                  <th colspan="2" style="text-align: center;">บริษัท</th>
+                                  <th colspan="2" style="text-align: center;">หลักฐาน</th>
+                                  <th colspan="2" style="text-align: center;">จำนวนเงิน</th>
+            								</tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                              <td colspan="3"  class="text-center">{{date_now}}</td>
+                              <td colspan="2" class="text-left"><input type="text" class="form-control input-xs"></td>
+                              <td colspan="2" class="text-left">{{gjbd.dur_company}}</td>
+                              <td colspan="2" class="text-left">{{gjbd.offerName}}</td>
+                              <td colspan="2" class="text-right">{{gjbd.dur_numoe}}</td>
+                          </tr>
+                          </tbody>
+                      </table>
+
+                  </div>
+              </div>
+          </div><!-- box body -->
+
+
+
+        </div>
+        </div>
+        <!-- <pre>{{getSubj | json}}</pre> -->
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-success btn-xs" data-dismiss="modal" data-ng-click="finishJob()" >
+              <i class="fa fa-inbox"></i>&nbsp;&nbsp;<span data-translate>รับส่งมอบ</span>
+          </button>
+          <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal" data-ng-click="cancel()">
+              <i class="fa fa-times"></i>&nbsp;&nbsp;<span data-translate>ยกเลิก</span>
+          </button>
+
+        </div>
+    </div>

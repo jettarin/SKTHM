@@ -1,0 +1,170 @@
+	<ol class="breadcrumb">
+		<li><a href="#/home-dashboard"><i
+				class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="#/">Renewal</a></li>
+		<li class="active">Renewal Detail</li>
+	</ol>
+<!-- </div> -->
+<div class="content">
+	<div class="box box-solid box-blue">
+		<div class="box-header">
+			<div class="box-tools pull-left">
+				<button data-box-collapse class="btn btn-default btn-sm">
+					<i class="fa fa-chevron-up"></i>
+				</button>
+
+			</div>
+			<h3 class="box-title">Renewal Detail</h3>
+			<div class="box-tools pull-right">
+				<button class="btn btn-xs btn-primary" data-ng-click="search()">
+					<i class="fa fa-search"></i><span>Search</span>
+				</button>
+				<button class="btn btn-xs btn-warning" data-ng-click="clear()">
+					<i class="fa fa-times"></i><span>Clear</span>
+				</button>
+			</div>
+		</div>
+		<!-- /.box-header -->
+		<div class="box-body">
+			<div class="row form-group">
+				<div class="col-sm-4">
+					<label class="col-sm-5 text-inline">Project :</label>
+					<div class="col-sm-7">
+						<select class="form-control input-xs" data-ui-select2 data-ng-model="criteria.projectCode">
+							<option value=""></option>
+							<option data-ng-repeat="optProject in projectList" value="{{optProject.projectCode}}">{{optProject.projectName}}</option>
+						</select>
+
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<label class="col-sm-5 text-inline">Old Policy No :</label>
+					<div class="col-sm-7">
+						<input type='text' class="form-control input-xs" data-ng-model="criteria.oldPolicyNo">
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<label class="col-sm-5 text-inline">Insured Name :</label>
+					<div class="col-sm-7">
+						<input type='text' class="form-control input-xs" data-ng-model="criteria.insuredName">
+					</div>
+				</div>
+				
+			</div>
+			<!-- end row 1 -->
+			<div class="row form-group">
+				
+
+				<div class="col-sm-4">
+					<label class="col-sm-5 text-inline">License No :</label>
+					<div class="col-sm-7">
+						
+							<input type='text' class="form-control input-xs" data-ng-model="criteria.carNo">
+							
+						</div>
+					</div>
+				
+
+
+				<!-- end row 2 -->
+			</div>
+			
+			
+		</div>
+		<!-- /.box-body -->
+	</div>
+	<!-- /.box -->
+
+
+
+<!-- 	<div> -->
+<!-- 		<button class="btn btn-xs btn-success" data-ng-click="exportExcelToBroker()"> -->
+<!-- 			<i class="fa fa-upload"></i><span>Export Excel to Broker</span> -->
+<!-- 		</button> -->
+	
+<!-- 		<button class="btn btn-xs btn-success" data-ng-click="exportExcelToBroker()"> -->
+<!-- 			<i class="fa fa-upload"></i><span>Print PDF</span> -->
+<!-- 		</button> -->
+<!-- 	</div> -->
+	
+
+
+	<div class="dataTables_wrapper">
+		<table data-serverside-paging data-paging="paging"
+			data-search="search"
+			class="table table-bordered table-condensed table-striped table-hover dataTable">
+			<thead>
+							<tr>
+								<th rowspan="10">No</th>
+								<th rowspan="10">Project</th>
+								<th rowspan="10">Make/Model</th>
+								<th rowspan="10">License No</th>
+								<th rowspan="10">Old Policy No</th>
+								<th rowspan="10">Insured Name</th>
+								<th colspan="2">Old Premium</th>
+								<th colspan="5">Renew Premium</th>															
+								
+							</tr>
+							<tr>
+								<th>MV</th>								
+								<th>MC</th>
+								<th>MV</th>
+								<th>MC</th>
+								
+								
+							</tr>
+							
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="reNewal in reNewalList">
+								<td class="">{{reNewal.no}}</td>
+								<td class="text-left ">{{reNewal.projectName}}</td>
+								<td class="text-left">{{reNewal.makeModel}}</td>
+								<td class="text-left">{{reNewal.licenseNo}}</td>
+								<td class="text-left">{{reNewal.policyNo}}</td>
+								<td class="text-left">{{reNewal.insuredName}}</td>
+								<td class="text-right">{{reNewal.voluntary}}</td>
+								<td class="text-right">{{reNewal.compulsory}}</td>
+								
+								<td class="text-right">{{reNewal.totalV}}</td>
+								<td class="text-right">{{reNewal.totalC}}</td>
+								
+								
+								
+							</tr>
+							
+						</tbody>
+		</table>
+
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="dataTables_length">
+					<label>Show <select class="form-control input-xs"
+						data-ng-model="paging.limit">
+							<option value="10" selected="selected">10</option>
+							<option value="25">25</option>
+							<option value="50">50</option>
+							<option value="100">100</option>
+					</select> records per page
+					</label>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="dataTables_info">Showing {{paging.showing.start}}
+					to {{paging.showing.end}} of {{paging.showing.total}} entries</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="dataTables_paginate paging_bootstrap">
+					<div data-pagination data-total-items="paging.totalItems"
+						data-items-per-page="paging.limit" data-page="paging.pageNumber"
+						data-max-size="5" data-boundary-links="true"
+						data-on-select-page="selectPage(page)"></div>
+				</div>
+			</div>
+		</div>
+		<!-- end table footer -->
+	</div>
+	<!-- end datatable_wrapper -->
+</div>
+

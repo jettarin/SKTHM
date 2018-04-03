@@ -1,0 +1,119 @@
+<ol class="breadcrumb">
+	<li><a href="#/home-dashboard"><i class="fa fa-home"></i> Home</a></li>
+	<li><a href="#/open-close-batch">Return Payment Management</a></li>
+	<li><a href="#/open-close-batch">Open/Close Batch List</a></li>
+	<li class="active">Close Batch</li>
+</ol>
+
+<div class="content">
+	<div class="box box-solid box-blue">
+		<div class="box-header">
+			<div class="box-tools pull-left">
+				<button data-box-collapse class="btn btn-default btn-sm">
+					<i class="fa fa-chevron-up"></i>
+				</button>
+			</div>
+			<h3 class="box-title">Close Batch</h3>
+			<div class="box-tools pull-right">
+				<button class="btn btn-xs btn-success" data-ng-click="save()">
+					<i class="fa fa-save"></i><span>Save</span>
+				</button>
+				<button class="btn btn-xs btn-warning" data-ng-click="back()">
+					<i class="fa fa-arrow-left"></i><span>Back</span>
+				</button>
+			</div>
+		</div>
+		<!-- /.box-header -->
+		
+		<div class="box-body">		
+			<form name="form" data-unsaved-warning="true" novalidate>
+				<div class="row form-group">
+					<div class="col-sm-3">
+						<label class="col-sm-4 text-inline">Batch ID :</label>
+						<div class="col-sm-8">
+							<input class="form-control input-xs" type="text" name="batchID" data-ng-model="detail.batchID" readonly>				
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label class="col-sm-5 text-inline">Opened Date :</label>
+						<div class="col-sm-7">
+							<div class='input-group date' data-datepicker data-ng-model="detail.openDate" id="openDate">
+							<input type='text' class="form-control input-xs col-xs-6" readonly> <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<label class="col-sm-5 text-inline">Status</label>
+						<div class="col-sm-7">
+							<select class="form-control input-xs" data-ng-model="detail.status" disabled>
+								<option value="">All</option>
+								<option value="O">Opened</option>
+								<option value="R">Reserved</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<label class="col-sm-3 text-inline">Remarks :</label>
+						<div class="col-sm-9">
+							<input class="form-control input-xs" type="text" name="remark" data-ng-model="detail.remark" value="{{detail.remark}}" readonly>		
+						</div>
+					</div>
+				</div><!-- end row 1 -->
+				<div class="dataTables_wrapper">
+				 	<table class="table table-bordered table-condensed table-striped table-hover dataTable">
+				 		<thead>
+					 		<tr>
+					 			<th>REFNo.</th>
+					 			<th>Policy No.</th>
+					 			<th>Endorse No.</th>
+					 			<th>Assured</th>
+					 			<th>Credit Card No.</th>
+					 			<th>Payment Date</th>
+					 			<th>Amount</th>
+					 			<th width="140px">Approve Code</th>
+					 			<th>Return Reasons</th>
+					 		</tr>
+				 		</thead>
+				 		<tbody>
+				 			<tr>
+					 			<td>{{detail.refNo}}</td>
+					 			<td>{{detail.policyNo}}</td>
+					 			<td>{{detail.endorseNo}}</td>
+					 			<td>{{detail.assured}}</td>
+					 			<td>{{detail.creditCard}}</td>
+					 			<td>{{detail.paymentDate}}</td>
+					 			<td class="text-right">{{detail.amount}}</td>
+					 			<td>
+					 				{{detail.apprCode}}
+					 			</td>
+					 			<td>	
+					 				{{detail.reasonCode}} - {{detail.reasonName}}
+					 			</td>
+				 			</tr>
+				 		</tbody>				 		
+				 	</table>
+			 	</div>
+			 	<div class="row form-group">
+					<div class="col-sm-4"></div>
+					<div class="col-sm-3"></div>
+					<div class="col-sm-5">
+						<div class="col-sm-6">
+							<label class="col-sm-6 text-inline">Total List :</label>
+							<div class="col-sm-6">
+								<input class="form-control input-xs" type="text" name="totalList" data-ng-model="detail.totalList" readonly>				
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<label class="col-sm-6 text-inline">Total Amount :</label>
+							<div class="col-sm-6">
+								<input class="form-control input-xs" type="text" name="totalAmount" data-ng-model="detail.amount" readonly>				
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- /.box-body -->
+	</div>
+</div>

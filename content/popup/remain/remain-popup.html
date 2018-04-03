@@ -1,0 +1,148 @@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" data-ng-click="cancel()"><span
+                data-aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <span lang="En"  style="color: green; font-size: 24px; font-weight: bold; line-height: 30px;">รายละเอียดงานที่ยังค้าง</span>&nbsp;&nbsp;
+        
+    </div>
+    <div class="modal-body">
+        <!-- ############# Content Of reserv ################## -->
+        <div class="content">
+
+            <div class="row">
+                <!-- ######## FROM RESERV ############## -->
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>Test Popup :</strong></label>
+
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control input-xs" data-ng-model="subj_name"/>
+
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>wwww :</strong></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control input-xs" data-ng-model="subj_id_val" />
+                    </div>
+
+                    <div class="col-sm-1 text-right">
+                        <label class="text-inline "><strong>eeee :</strong></label>
+                    </div>
+                    <div class="col-sm-1">
+                        <input type="text" class="form-control input-xs"   data-ng-model="criteria.period_b" data-ng-readonly="true" />
+                    </div>
+                    <div class="col-sm-1 text-center">
+                        <label class="text-inline "><strong>qqqq :</strong></label>
+                    </div>
+                    <div class="col-sm-1">
+                        <input type="text" class="form-control input-xs"   data-ng-model="criteria.period_f" data-ng-readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <br>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>iiii :</strong></label>
+                    <div class="col-sm-3">
+
+
+
+
+                        <select class="form-control input-xs" id="time_b" data-ui-select2 data-ng-model="criteria.time_b" data-ng-click="checkTimeB(criteria.time_b)">
+                            <option></option>
+                            <option data-ng-repeat="getTimeBObj in getTimeB"  data-ng-disabled="getTimeBObj.dis"  value="{{getTimeBObj.value}}">
+                                {{getTimeBObj.nameB}} เธเธฒเธเธ—เธตเน {{getTimeBObj.value}}
+                            </option>
+                        </select>
+
+
+                    </div>
+
+
+                    <div class="col-sm-1 text-right">
+                        <label class="text-inline "><strong>tyy :</strong></label>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control input-xs" id="time_f"  data-ui-select2 data-ng-model="criteria.time_f" data-ng-click="checkTimeF(criteria.time_f)">
+                            <option></option>
+                            <option data-ng-repeat="getTimeFObj in getTimeB"  data-ng-disabled="getTimeFObj.dis"  value="{{getTimeFObj.value}}">
+                                {{getTimeFObj.nameF}} เธเธฒเธเธ—เธตเน {{getTimeFObj.value}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <!-- ######## FROM RESERV ############## -->
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>rrr :</strong></label>
+
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control input-xs" data-ng-model="dayStr" data-ng-readonly="true"/>
+                    </div>
+                    <div class="col-sm-1 text-right">
+                        <label class="text-inline "><strong>uuu :</strong></label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control input-xs" data-ng-model="dateStr" data-ng-readonly="true"/>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <!-- ######## FROM RESERV ############## -->
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>ttt :</strong></label>
+
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control input-xs" data-ng-model="techerOwner" data-ng-readonly="true" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+        <!-- ####################### Sub Ject Description ################################# -->
+
+        <!-- data-ng-show="statusSubj == 'has' || statusSubj == 'edit' " -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <!-- <pre>{{getSubj | json}}</pre> -->
+        <div class="modal-footer">
+
+
+
+            
+            <button type="button" class="btn btn-warning btn-xs" data-dismiss="modal" data-ng-click="cancel()">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;<span data-translate>ยกเลิก</span>
+            </button>
+        </div>
+    </div>
+</div>
+

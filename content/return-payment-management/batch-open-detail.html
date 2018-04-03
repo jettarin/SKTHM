@@ -1,0 +1,114 @@
+<ol class="breadcrumb">
+	<li><a href="#/home-dashboard"><i class="fa fa-home"></i> Home</a></li>
+	<li><a href="#/batch-open-list">Return Payment Management</a></li>
+	<li><a href="#/batch-open-list">Batch Open List</a></li>
+	<li data-ng-show="mode == 'create'" class="active">Create</li>
+	<li data-ng-show="mode == 'edit'" class="active">Edit</li>
+</ol>
+
+<div class="content">
+	<div class="box box-solid box-blue">
+		<div class="box-header">
+			<div class="box-tools pull-left">
+				<button data-box-collapse class="btn btn-default btn-sm">
+					<i class="fa fa-chevron-up"></i>
+				</button>
+			</div>
+			<h3 class="box-title" data-ng-show="mode == 'create'">Create</h3>
+			<h3 class="box-title" data-ng-show="mode == 'edit'">Edit</h3>
+			<div class="box-tools pull-right">
+				<button class="btn btn-xs btn-danger" data-ng-click="">
+					<i class="fa fa-link"></i><span>Reserved</span>
+				</button>
+				<button class="btn btn-xs btn-success" data-ng-click="save()">
+					<i class="fa fa-save"></i><span>Save</span>
+				</button>
+				<button class="btn btn-xs btn-warning" data-ng-click="back()">
+					<i class="fa fa-arrow-left"></i><span>Back</span>
+				</button>
+			</div>
+		</div>
+		<!-- /.box-header -->
+		
+		<div class="box-body">		
+			<form name="form" data-unsaved-warning="true" novalidate>
+				<div class="row form-group">
+					<div class="col-sm-4">
+						<label class="col-sm-3 text-inline">Batch ID :</label>
+						<div class="col-sm-6">
+							<input class="form-control input-xs" type="text" name="batchID" data-ng-model="detail.batchID" readonly>				
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<label class="col-sm-4 text-inline">Opened Date :</label>
+						<div class="col-sm-6">
+							<input class="form-control input-xs" type="text" name="openDate" data-ng-model="detail.openDate" readonly>		
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<label class="col-sm-3 text-inline">Remarks :</label>
+						<div class="col-sm-9">
+							<input class="form-control input-xs" type="text" name="remark" data-ng-model="detail.remark" value="{{detail.remark}}" readonly>		
+						</div>
+					</div>
+				</div><!-- end row 1 -->
+				<div class="dataTables_wrapper">
+				 	<table class="table table-bordered table-condensed table-striped table-hover dataTable">
+				 		<thead>
+					 		<tr>
+					 			<th>REFNo.</th>
+					 			<th>Policy No.</th>
+					 			<th>Endorse No.</th>
+					 			<th>Assured</th>
+					 			<th>Credit Card No.</th>
+					 			<th>Payment Date</th>
+					 			<th>Amount</th>
+					 			<th width="140px">Approve Code</th>
+					 			<th>Return Reasons</th>
+					 		</tr>
+				 		</thead>
+				 		<tbody>
+				 			<tr>
+					 			<td>{{detail.refNo}}</td>
+					 			<td>{{detail.policyNo}}</td>
+					 			<td>{{detail.endorseNo}}</td>
+					 			<td>{{detail.assured}}</td>
+					 			<td>{{detail.creditCard}}</td>
+					 			<td>{{detail.paymentDate}}</td>
+					 			<td class="text-right">{{detail.amount}}</td>
+					 			<td>
+					 				<input class="form-control input-xs col-sm-3" type="text" data-ng-model="detail.apprCode">
+					 			</td>
+					 			<td>	
+					 				<select class="form-control input-xs" name="reason" data-ng-model="detail.reason">
+										<option data-ng-repeat="reaList in reasonList" value="{{reaList.reasonCode}}">{{reaList.reasonCode}} - {{reaList.reasonName}}</option>
+									</select>
+					 			</td>
+				 			</tr>
+				 		</tbody>				 		
+				 	</table>
+			 	</div>
+			 	<div class="row form-group">
+					<div class="col-sm-4"></div>
+					<div class="col-sm-3"></div>
+					<div class="col-sm-5">
+						<div class="col-sm-6">
+							<label class="col-sm-6 text-inline">Total List :</label>
+							<div class="col-sm-6">
+								<input class="form-control input-xs" type="text" name="totalList" data-ng-model="detail.totalList" readonly>				
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<label class="col-sm-6 text-inline">Total Amount :</label>
+							<div class="col-sm-6">
+								<input class="form-control input-xs" type="text" name="totalAmount" data-ng-model="detail.amount" readonly>				
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- /.box-body -->
+	</div>
+</div>

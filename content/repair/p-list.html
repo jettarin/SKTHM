@@ -1,0 +1,147 @@
+<ol class="breadcrumb">
+    <li><a href="#/home-dashboard"><i class="fa fa-share"></i> ส่งซ่อมนอก</a></li>
+    <li class="active"> ครุภัณฑ์ที่กำลังส่งซ่อม</li>
+</ol>
+
+<!-- ######################################## [START] CONTENT ######################################## -->
+<div class="content">
+
+
+    <div class="col-sm-12">
+        <div class="box box-solid box-blue">
+            <div class="box-header">
+                <div class="box-tools pull-left">
+                    <button data-box-collapse class="btn btn-default btn-sm">
+                        <i class="fa fa-chevron-up"></i>
+                    </button>
+                </div>
+                <div class="box-tools pull-right">
+          				<button class="btn btn-xs btn-primary" data-ng-click="list.search()">
+          					<i class="fa fa-search"></i><span>ค้นหา</span>
+          				</button>
+          				<button class="btn btn-xs btn-warning" data-ng-click="clear()">
+          					<i class="fa fa-times"></i><span>ล้าง</span>
+          				</button>
+          			</div>
+                <h3 class="box-title">ค้นหา</h3>
+            </div><!-- box-header -->
+            <div class="box-body">
+        			<div class="row form-group">
+        			<div class="col-sm-4">
+        					<label class="col-sm-5 text-inline">อาการ :</label>
+        					<div class="col-sm-7">
+        						<input class="form-control input-xs" type="text" data-ng-model="criteria.job_header">
+        					</div>
+        				</div>
+        				<div class="col-sm-4">
+        					<label class="col-sm-5 text-inline">รายการ :</label>
+        					<div class="col-sm-7">
+
+                      <input class="form-control input-xs" type="text" data-ng-model="criteria.dur_list">
+
+        					</div>
+        				</div>
+        				<div class="col-sm-4">
+        					<label class="col-sm-5 text-inline">หน่วยงาน :</label>
+        					<div class="col-sm-7">
+        						<select class="form-control input-xs" data-ui-select2
+        							data-ng-model="criteria.dep">
+        							<option value=""></option>
+        							<option	data-ng-repeat="dep in getDepartment" value="{{dep.Cost_SKTHM}}">{{dep.Cost_name}}</option>
+        						</select>
+        					</div>
+        				</div>
+
+        			</div>
+        			<!-- end row 1 -->
+        			<div class="row form-group">
+        				<div class="col-sm-4">
+        					<label class="col-sm-5 text-inline">เลขครุภัณฑ์ :</label>
+                  <div class="col-sm-7">
+                      <input class="form-control input-xs" type="text" data-ng-model="criteria.dur_numoe">
+                  </div>
+        				</div>
+                <div class="col-sm-4">
+        					<label class="col-sm-5 text-inline">วันที่เริ่มต้น :</label>
+        					<div class="col-sm-7">
+        						<div class='input-group date' data-datepicker
+        							data-ng-model="criteria.date_f" id="coverDate">
+        							<input type='text' class="form-control input-xs col-xs-6">
+        							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        						</div>
+        					</div>
+        				</div>
+        				<div class="col-sm-4">
+        					<label class="col-sm-5 text-inline">ถึงวันที่ :</label>
+        					<div class="col-sm-7">
+        						<div class='input-group date' data-datepicker
+        							data-ng-model="criteria.date_t" id="coverDate">
+        							<input type='text' class="form-control input-xs col-xs-6">
+        							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        						</div>
+        					</div>
+        				</div>
+
+
+        				<!-- end row 2 -->
+        			</div>
+            </div><!-- box -->
+
+
+        		</div>
+            <div class="box-body">
+                <div class="row form-group">
+                    <div class="dataTables_wrapper">
+                        <table data-serverside-paging data-paging="paging" data-search="search" class="table table-bordered table-condensed table-striped table-hover dataTable">
+                            <thead>
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>อาการจากเจ้าหน้าที่</th>
+                                <th>รายการ</th>
+                                <th>ผู้แจ้ง</th>
+                                <th>เลขครุภัณฑ์</th>
+                                <th>หน่วยงาน</th>
+                                <th>วันที่แจ้ง</th>
+                                <th nowrap>การตอบกลับผู้บริหาร</th>
+                                <th>รับส่งมอบ</th>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            <tr data-ng-repeat="jl in getPlist">
+                                <td class="text-center">{{$index+1}}</td>
+                                <td class="text-left">{{jl.job_header}}</td>
+                                <td class="text-left">{{jl.dur_list}}</td>
+                                <td class="text-left">{{jl.offerName}}</td>
+                                <td class="text-right">{{jl.dur_numoe}}</td>
+                                <td class="text-left">{{jl.nameOfDepartment}}</td>
+                                <td class="text-right">{{jl.job_date_created}}</td>
+                                <td class="text-right"><a href="" data-ng-click="change(jl.job_id)">{{jl.job_manager_response}}</a></td>
+
+                                <td class="action">
+                                    <a href="" data-tooltip="รับส่งมอบ" data-toggle="modal" data-target="#history"
+                                       data-ng-click="gotoDeliver(jl.dur_id,jl.job_id)"><i
+                                            class="fa fa-inbox"></i></a>
+                                    <a href=""  data-tooltip="ลบ" data-toggle="modal" data-target="#history"
+                                           data-ng-click="deleteJob(jl.job_id,jl.dur_id)"><i
+                                                class="fa fa-trash-o"></i></a>
+
+                                </td>
+                            </tr>
+                            <tr data-ng-show="getPlist == '' || getPlist == undefined">
+                            	<td colspan="10" data-translate>ไม่มีข้อมูล</td>
+                        		</tr>
+
+
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div><!-- box body -->
+    </div>
+
+</div>
+<!-- ######################################## [ END ] CONTENT ######################################## -->

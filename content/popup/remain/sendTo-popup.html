@@ -1,0 +1,102 @@
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" data-ng-click="cancel()"><span
+                data-aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <span lang="En"  style="color: green; font-size: 24px; font-weight: bold; line-height: 30px;">รายละเอียดส่งต่องาน</span>&nbsp;&nbsp;
+
+    </div>
+    <div class="modal-body">
+        <!-- ############# Content Of reserv ################## -->
+        <div class="content">
+
+            <div class="row form-group">
+                <!-- ######## FROM RESERV ############## -->
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>เหตุผล :</strong></label>
+
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control input-xs" data-ng-model="criteria.comment" required/>
+                        <span class="help-block-error" data-ng-show="commentError">กรุณากรอกเหตุผลที่ส่งต่อ !</span>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row form-group" data-ng-show="criteria.job_status == '77'">
+                <!-- ######## FROM RESERV ############## -->
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>Serial No. :</strong></label>
+
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control input-xs" data-ng-model="criteria.serialNo" required/>
+                        <span class="help-block-error" data-ng-show="commentError">กรุณากรอกเหตุผลที่ส่งต่อ !</span>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>สถานะ :</strong></label>
+                    <div class="col-sm-7">
+
+                        <select class="form-control input-xs" id="selectOffocer" data-ui-select2="{'containerCssClass': 'required'}"   data-ng-model="criteria.job_status" data-ng-click="getListStatus(criteria.job_status)">
+                            <option></option>
+                            <option data-ng-repeat="gstt in getStatus" data-ng-disabled="gstt.dis"    value="{{gstt.lov_value}}">
+                                {{gstt.lov_description}}
+                            </option>
+                        </select>
+                          <span class="help-block-error" data-ng-show="commentErrorS">กรุณาเลือกสถานะส่งต่อ !</span>
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+            <div class="row form-group" >
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>ส่งต่อให้ :</strong></label>
+                    <div class="col-sm-7">
+
+
+                        <input type="text" class="form-control input-xs" data-ng-model="criteria.headOfficer" data-ng-show="showInput==0" data-ng-disabled="true" />
+
+                        <select class="form-control input-xs" id="selectOffocer" data-ng-show="showInput==1" data-ui-select2="{'containerCssClass': 'required'}"   data-ng-model="criteria.off_id_to">
+                            <option></option>
+                            <option data-ng-repeat="ofl in officerList"    value="{{ofl.Mem_ID}}">
+                                {{ofl.Mem_name}}  {{ofl.Mem_lastname}}
+                            </option>
+                        </select>
+                        <span class="help-block-error" data-ng-show="commentErrorTo">กรุณาเลือกผู้ที่ต้องการส่งต่อ !</span>
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+        </div>
+        <!-- <pre>{{getSubj | json}}</pre> -->
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-primary btn-xs" data-dismiss="modal" data-ng-click="sendTo()" >
+              <i class="fa fa-share"></i>&nbsp;&nbsp;<span data-translate>ส่งต่อ</span>
+          </button>
+          <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal" data-ng-click="cancel()">
+              <i class="fa fa-times"></i>&nbsp;&nbsp;<span data-translate>ยกเลิก</span>
+          </button>
+
+        </div>

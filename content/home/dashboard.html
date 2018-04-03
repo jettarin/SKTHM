@@ -1,0 +1,142 @@
+<ol class="breadcrumb">
+	<li><a href="#/home-dashboard"><i class="fa fa-home"></i> หน้าแรก</a></li>
+	<li class="active">แดชบอร์ด</li>
+</ol>
+
+<!-- ######################################## [START] CONTENT ######################################## -->
+<div class="content">
+
+	 <h4 class="page-header">แดชบอร์ด</h4>
+	 <div class="col-sm-12">
+	 	<div class="box box-solid box-blue">
+			<div class="box-header">
+				<div class="box-tools pull-left">
+					<button data-box-collapse class="btn btn-default btn-sm">
+						<i class="fa fa-chevron-up"></i>
+					</button>
+				</div>
+				<h3 class="box-title">รายการแจ้งซ่อมประจำวันที่ {{dateNow}}</h3>
+			</div><!-- box-header -->
+			<div class="box-body">
+				<div class="row form-group">
+					<div class="dataTables_wrapper">
+		 				<table data-serverside-paging data-paging="paging" data-search="search" class="table table-bordered table-condensed table-striped table-hover dataTable">
+							<thead>
+								<tr>
+									<th rowspan="2" width="3%">ลำดับ</th>
+									<th rowspan="2" width="30%">อาการเบื้องต้น</th>
+									<th colspan="5" width="37%">รายละเอียด</th>
+								</tr>
+								<tr >
+									<th>หน่วยงาน</th>
+
+									<th>เวลา</th>
+									<th>สถานะการรับงาน</th>
+									<th>รับงาน</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-ng-repeat="aj in allJob">
+									<td class="text-center">{{$index+1}}</td>
+									<td class="text-left">{{aj.job_header}}</td>
+									<td class="text-left">{{aj.nameCost}}</td>
+									<td class="text-right">{{aj.job_time_created}} น.</td>
+									<td class="text-right" ><label style="color:{{aj.colorStatus}}">{{aj.statusAcc}}</label></td>
+									<td class="action">
+										<!-- 						<a href="" data-tooltip="Edit" data-ng-click="gotoEdit(obj.lovCode)"><i class="fa fa-edit"></i></a> -->
+										<a href="" data-tooltip="ดูเพิ่ม" data-toggle="modal" data-ng-show="aj.job_acc_status == 0" data-target="#history"
+										   data-ng-click="confirmJob(aj.job_id)"><i
+												class="fa fa-check-square fa-2x"></i>
+										</a>
+										<a href=""   data-target="#history" data-ng-hide="aj.job_acc_status == 0"><i
+												class="fa fa-ban"></i>
+										</a>
+
+
+									</td>
+
+								</tr>
+								<tr data-ng-show="allJob == '' || allJob == undefined">
+                	<td colspan="10" data-translate>ยังไม่มีการแจ้งซ่อม</td>
+            		</tr>
+
+
+
+
+
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div><!-- box body -->
+		</div><!-- box -->
+	 </div>
+	<div class="col-sm-12">
+		<div class="box box-solid box-blue">
+			<div class="box-header">
+				<div class="box-tools pull-left">
+					<button data-box-collapse class="btn btn-default btn-sm">
+						<i class="fa fa-chevron-up"></i>
+					</button>
+				</div>
+				<h3 class="box-title">รายการส่งต่อ</h3>
+			</div><!-- box-header -->
+			<div class="box-body">
+				<div class="row form-group">
+					<div class="dataTables_wrapper">
+						<table data-serverside-paging data-paging="paging" data-search="search" class="table table-bordered table-condensed table-striped table-hover dataTable">
+							<thead>
+							<tr>
+								<th rowspan="2">ลำดับ</th>
+								<th rowspan="2" width="50%">อาการเบื้องต้น</th>
+								<th colspan="6">รายละเอียด</th>
+							</tr>
+							<tr >
+
+								<th>หน่วยงาน</th>
+
+								<th>ส่งต่อเมื่อ</th>
+								<th>ส่งต่อโดย</th>
+								<th>ดูเพิ่ม</th>
+							  <th>ปิดงาน</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr data-ng-repeat="js in jobSendToList">
+								<td class="text-center">{{$index+1}}</td>
+								<td class="text-left">{{js.job_header}}</td>
+								<td class="text-left">{{js.nameCost}}</td>
+								<td class="text-right">{{js.job_time_acc}} น.</td>
+								<td class="text-right" ><label style="color:{{jstl.colorStatus}}">{{js.nameOfficerAcc}}</label></td>
+								<td class="action">
+										<!-- 						<a href="" data-tooltip="Edit" data-ng-click="gotoEdit(obj.lovCode)"><i class="fa fa-edit"></i></a> -->
+										<a href="" data-tooltip="รับงาน" data-toggle="modal" data-target="#history"
+											 data-ng-click="gotoMoreDetail(js.job_id)"><i
+														class="fa fa-eye"></i></a>
+
+								</td>
+								<td class="action">
+										<a href="" data-tooltip="ปิดงาน" data-toggle="modal" data-target="#history"
+											 data-ng-click="finishJob(js.job_id,js.dur_id,js.job_type)"><i
+														class="fa fa-check-circle"></i></a>
+
+								</td>
+							</tr>
+							<tr data-ng-show="jobSendToList == '' || jobSendToList == undefined">
+								<td colspan="10" data-translate>ยังไม่มีข้อมูล</td>
+							</tr>
+
+
+
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div><!-- box body -->
+		</div><!-- box -->
+	</div>
+</div>
+<!-- ######################################## [ END ] CONTENT ######################################## -->

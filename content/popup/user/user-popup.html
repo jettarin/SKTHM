@@ -1,0 +1,121 @@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" data-ng-click="cancel()"><span
+                data-aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <span lang="En"  style="color: green; font-size: 24px; font-weight: bold; line-height: 30px;">รายละเอียดงานที่ถูกรับโดย {{nameOfficer}}</span>&nbsp;&nbsp;
+
+    </div>
+
+    <div class="modal-body">
+        <!-- ############# Content Of reserv ################## -->
+        <div class="content">
+          <div class="progress progress-info progress-striped ">
+<div class="bar" style="width: {{per}}%"></div>
+</div>
+
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>สถานะงานปัจุบัน :</strong></label>
+
+                    <div class="col-sm-6">
+                      <label class=" text-inline"><strong>{{statusStr}}</strong></label>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <!-- ######## FROM RESERV ############## -->
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>รับงานเมื่อ :</strong></label>
+
+                    <div class="col-sm-7">
+                      <label class="text-inline"><strong>{{getJobById.job_date_acc}} {{getJobById.job_time_acc}}</strong></label>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" data-ng-hide="getJjobSuccess == '' || getJjobSuccess == undefined">
+                <!-- ######## FROM RESERV ############## -->
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>ปิดงานเมื่อ :</strong></label>
+
+                    <div class="col-sm-7">
+                      <label class="text-inline"><strong>{{getJjobSuccess.finish_date}} {{getJjobSuccess.finish_time}}</strong></label>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" data-ng-hide="getJobById.job_dur_id==''||getJobById.job_dur_id==null">
+                <!-- ######## FROM RESERV ############## -->
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>รายการ :</strong></label>
+
+                    <div class="col-sm-7">
+                      <label class="text-inline"><strong>{{getDurableById.dur_list}}</strong></label>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" data-ng-hide="getJobById.job_dur_id==''||getJobById.job_dur_id==null">
+                <!-- ######## FROM RESERV ############## -->
+                <div class="col-sm-12">
+                    <label class="col-sm-3 text-inline"><strong>ยี่ห้อ :</strong></label>
+
+                    <div class="col-sm-7">
+                      <label class="text-inline"><strong>{{getDurableById.dur_naoe}}</strong></label>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+
+        </div>
+
+
+
+
+
+        <!-- ####################### Sub Ject Description ################################# -->
+
+        <!-- data-ng-show="statusSubj == 'has' || statusSubj == 'edit' " -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <!-- <pre>{{getSubj | json}}</pre> -->
+        <div class="modal-footer">
+
+
+
+
+            <button type="button" class="btn btn-warning btn-xs" data-dismiss="modal" data-ng-click="cancel()">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;<span data-translate>ยกเลิก</span>
+            </button>
+        </div>
+    </div>
+</div>

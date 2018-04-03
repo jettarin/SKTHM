@@ -1,0 +1,103 @@
+
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" data-ng-click="cancel()"><span
+                data-aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <span lang="En"  style="color: green; font-size: 24px; font-weight: bold; line-height: 30px;">รายละเอียดของงาน </span>&nbsp;&nbsp;
+
+    </div>
+    <div class="modal-body">
+
+      <div class="content">
+        <div class="row">
+            <div class="col-sm-12">
+                <label class="col-sm-2 text-inline"><strong>แจ้งซ่อมโดย :</strong></label>
+
+                <div class="col-sm-3">
+                    <input type="text" class="form-control input-xs" data-ng-model="criteria.userName" data-ng-disabled="true" />
+
+                </div>
+                <div class="col-sm-2 text-right">
+                    <label class="text-inline "><strong>หน่วยงาน :</strong></label>
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control input-xs"   data-ng-model="criteria.department" data-ng-readonly="true" />
+                </div>
+            </div>
+
+        </div>
+      </br>
+        <div class="row">
+            <div class="col-sm-12">
+                <label class="col-sm-2 text-inline"><strong>อาการเบื้องต้น :</strong></label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control input-xs" data-ng-model="criteria.job_header" data-ng-readonly="true"/>
+                </div>
+
+
+
+
+            </div>
+        </div>
+      </br>
+          <div class="row">
+              <div class="col-sm-12">
+                  <label class="col-sm-2 text-inline"><strong>อาการโดยละเอียด :</strong></label>
+                  <div class="col-sm-9">
+                      <textarea  class="form-control input-xs" data-ng-model="criteria.job_desc" data-ng-readonly="true"/>
+                  </div>
+              </div>
+          </div>
+          <br>
+          <div class="row" data-ng-hide="jobObj.job_dur_id=='' || jobObj.job_dur_id==null">
+              <div class="col-sm-12">
+                  <label class="col-sm-2 text-inline"><strong>เลขครุภัณฑ์ :</strong></label>
+
+                  <div class="col-sm-3">
+                      <input type="text" class="form-control input-xs" data-ng-model="criteria.dur_numoe" data-ng-disabled="true"/>
+
+                  </div>
+                  <div class="col-sm-2 text-right">
+                      <label class="text-inline "><strong>รายการ :</strong></label>
+                  </div>
+                  <div class="col-sm-4">
+                      <input type="text" class="form-control input-xs"   data-ng-model="criteria.dur_list" data-ng-readonly="true" />
+                  </div>
+              </div>
+
+          </div>
+        </br>
+        <div class="row" data-ng-hide="jobObj.job_dur_id=='' || jobObj.job_dur_id==null">
+            <div class="col-sm-12">
+                <label class="col-sm-2 text-inline"><strong>แจ้งซ่อมครั้งที่ :</strong></label>
+
+                <div class="col-sm-3">
+                    <input type="text" class="form-control input-xs" data-ng-model="criteria.countFix" data-ng-disabled="true"/>
+
+                </div>
+                <div class="col-sm-2 text-right" data-ng-show="criteria.countFix!='0'">
+                    <label class="text-inline "><strong>รายละเอียดการซ่อม :</strong></label>
+                </div>
+                <div class="col-sm-4" data-ng-show="criteria.countFix!='0'">
+                  <button type="button" class="btn btn-primary btn-xs" data-dismiss="modal" data-ng-click="gotoJobDurable(criteria.dur_id)">
+                      <i class="fa fa-bars"></i>&nbsp;&nbsp;<span data-translate>รายละเอียด</span>
+                  </button>
+                </div>
+            </div>
+
+        </div>
+      </div>
+
+    </div>
+        <div class="modal-footer">
+
+          <span style="color:red;"><b>{{errorMessage}}</b></span>
+
+          <button type="button" class="btn btn-success btn-xs" data-dismiss="modal" data-ng-click="acceptJob()">
+              <i class="fa fa-check-circle-o"></i>&nbsp;&nbsp;<span data-translate>รับงาน</span>
+          </button>
+            <button type="button" class="btn btn-warning btn-xs" data-dismiss="modal" data-ng-click="cancel()">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;<span data-translate>ยกเลิก</span>
+            </button>
+        </div>
